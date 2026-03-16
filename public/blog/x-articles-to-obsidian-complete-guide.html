@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>X Articles to Obsidian: Complete Guide (2026) | xtomd.com</title>
+  <meta name="description" content="Complete guide to saving X (Twitter) articles and threads to Obsidian as Markdown. Learn the best workflow for capturing, organizing, and linking X content in your vault.">
+  <meta name="keywords" content="x articles to obsidian, twitter to obsidian, save tweets to obsidian markdown, x thread obsidian, twitter obsidian workflow">
+  <link rel="canonical" href="https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html">
+  <meta property="og:title" content="X Articles to Obsidian: Complete Guide (2026)">
+  <meta property="og:description" content="Complete guide to saving X articles and threads to Obsidian as clean Markdown. Workflow, metadata, tags, and linking strategies.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html">
+  <meta property="og:site_name" content="xtomd.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="X Articles to Obsidian: Complete Guide (2026)">
+  <meta name="twitter:description" content="Complete guide to saving X articles and threads to Obsidian as clean Markdown.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .blog-nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .blog-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-nav-links a:hover {
+      color: var(--text);
+    }
+    .blog-article h1 {
+      font-size: 1.85rem;
+      text-align: left;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .blog-meta {
+      font-size: 0.825rem;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+    }
+    .blog-article h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-article h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-article p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .blog-article ul, .blog-article ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .blog-article li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .blog-article code {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+    }
+    .blog-article pre {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      font-size: 0.825rem;
+      line-height: 1.65;
+    }
+    .blog-article pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+    }
+    .blog-article strong {
+      font-weight: 700;
+    }
+    .blog-article a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-soft);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.15s;
+    }
+    .blog-article a:hover {
+      text-decoration-color: var(--accent);
+    }
+    .blog-cta {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .blog-cta h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .blog-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+    .blog-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .blog-cta-btn:hover {
+      background: var(--primary-hover);
+      color: var(--bg);
+      text-decoration: none;
+    }
+    .faq-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .faq-section h2 {
+      margin-top: 0;
+    }
+    .faq-item {
+      margin-bottom: 1.25rem;
+    }
+    .faq-item h3 {
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .blog-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      padding-bottom: 1rem;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.825rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .step {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+    .tip-box {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 0.875rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .tip-box p {
+      margin-bottom: 0;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .tip-box strong {
+      color: var(--accent);
+    }
+    @media (max-width: 600px) {
+      .blog-article h1 { font-size: 1.4rem; }
+      .blog-article h2 { font-size: 1.1rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "X Articles to Obsidian: Complete Guide (2026)",
+    "description": "Complete guide to saving X (Twitter) articles and threads to Obsidian as Markdown. Workflow, metadata, tags, and linking strategies.",
+    "author": {
+      "@type": "Organization",
+      "name": "xtomd.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "xtomd.com",
+      "url": "https://xtomd.com"
+    },
+    "datePublished": "2026-03-16",
+    "dateModified": "2026-03-16",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html"
+    },
+    "url": "https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I save X articles to Obsidian?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Go to xtomd.com, paste the X article URL, and click Convert. Then either download the .md file into your Obsidian vault folder or copy the Markdown and paste it into a new Obsidian note. All formatting including headings, lists, and images is preserved."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Markdown from xtomd.com work in Obsidian?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. xtomd.com outputs standard Markdown that renders perfectly in Obsidian. Headings, bold, italic, lists, links, and images all display correctly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How should I organize X articles in my Obsidian vault?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Create a dedicated folder like X-Articles or Sources/X in your vault. Add YAML frontmatter with metadata like author, date, source URL, and tags. Use Obsidian's linking features to connect X articles to your own notes and MOCs (Maps of Content)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I save X threads to Obsidian?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. xtomd.com converts entire X threads into a single Markdown document. Paste the thread URL, convert it, and save the output to your Obsidian vault. The thread is combined into one cohesive note."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <nav class="blog-nav">
+      <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
+      <div class="blog-nav-links">
+        <a href="https://xtomd.com">Home</a>
+        <a href="https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html">Blog</a>
+      </div>
+    </nav>
+
+    <article class="blog-article">
+      <h1>X Articles to Obsidian: Complete Guide</h1>
+      <p class="blog-meta">Updated March 2026 &middot; 7 min read</p>
+
+      <p>To save X (Twitter) articles to Obsidian, convert them to Markdown using <a href="https://xtomd.com">xtomd.com</a> and download the <code>.md</code> file directly into your vault. The converter preserves all formatting -- headings, bold, italic, lists, links, and images -- so the note renders perfectly in Obsidian with no manual cleanup needed.</p>
+
+      <h2>Why Are X Articles Valuable for Your Obsidian Vault?</h2>
+      <p>X Articles and threads are one of the richest sources of expert knowledge on the internet. Researchers publish findings, founders share detailed business analyses, developers write technical deep-dives, and analysts break down complex topics -- all in long-form formats on X.</p>
+      <p>This content is uniquely valuable for a personal knowledge management (PKM) system because it is often more current, more specific, and more opinionated than traditional blog posts or academic papers. A well-curated collection of X Articles in your Obsidian vault becomes a real-time knowledge base that you can search, link, and build upon.</p>
+      <p>The challenge is getting this content out of X and into Obsidian in a format that preserves the original structure. That is exactly what <a href="https://xtomd.com">xtomd.com</a> solves.</p>
+
+      <h2>How Do I Save an X Article to Obsidian?</h2>
+      <p>Here is the complete workflow from X to your Obsidian vault:</p>
+
+      <div class="step"><span class="step-number">1</span><p><strong>Copy the X article or thread URL</strong> from your browser address bar or the X share button.</p></div>
+      <div class="step"><span class="step-number">2</span><p><strong>Go to <a href="https://xtomd.com">xtomd.com</a></strong> and paste the URL into the input field. Press Enter or click Convert.</p></div>
+      <div class="step"><span class="step-number">3</span><p><strong>Click Download</strong> to save the output as a <code>.md</code> file. Alternatively, click Copy to copy the Markdown to your clipboard.</p></div>
+      <div class="step"><span class="step-number">4</span><p><strong>Move the file into your Obsidian vault folder</strong> (or paste the copied Markdown into a new note in Obsidian).</p></div>
+      <div class="step"><span class="step-number">5</span><p><strong>Add metadata and links</strong> to integrate the note into your vault's knowledge graph.</p></div>
+
+      <p>The downloaded Markdown file renders immediately in Obsidian. Headings appear in the outline panel, links are clickable, and images display inline.</p>
+
+      <h2>How Should I Organize X Articles in My Vault?</h2>
+      <p>There are several proven organizational strategies for X content in Obsidian:</p>
+
+      <h3>Folder structure</h3>
+      <p>Create a dedicated folder for X content. A simple approach:</p>
+      <pre><code>Vault/
+  Sources/
+    X-Articles/
+      2026-03-15-author-topic.md
+      2026-03-12-author-topic.md
+    Books/
+    Papers/</code></pre>
+      <p>Using a date prefix in the filename makes it easy to sort chronologically and avoids naming conflicts.</p>
+
+      <h3>YAML frontmatter</h3>
+      <p>Add metadata to each X article note using Obsidian's YAML frontmatter. This makes your notes searchable and filterable with Dataview or the core search. Here is a recommended template:</p>
+      <pre><code>---
+title: "The original article title"
+author: "@username"
+source: "https://x.com/username/status/123456789"
+date: 2026-03-15
+type: x-article
+tags:
+  - topic-one
+  - topic-two
+  - ai
+status: unprocessed
+---</code></pre>
+
+      <div class="tip-box">
+        <p><strong>Tip:</strong> Use a <code>status</code> field with values like <code>unprocessed</code>, <code>reviewed</code>, and <code>integrated</code> to track which articles you have read and incorporated into your own notes.</p>
+      </div>
+
+      <h3>Tagging strategy</h3>
+      <p>Use consistent tags to connect X articles to your broader vault. Recommended tag categories:</p>
+      <ul>
+        <li><strong>Topic tags:</strong> <code>#ai</code>, <code>#startups</code>, <code>#webdev</code>, <code>#economics</code></li>
+        <li><strong>Source tags:</strong> <code>#x-article</code>, <code>#x-thread</code> to distinguish content types</li>
+        <li><strong>Author tags:</strong> <code>#author/username</code> to group content by creator</li>
+        <li><strong>Project tags:</strong> <code>#project/research-name</code> to link articles to specific projects</li>
+      </ul>
+
+      <h2>How Do I Link X Articles to My Existing Notes?</h2>
+      <p>The real power of Obsidian is the knowledge graph. X articles become exponentially more valuable when you link them to your own thinking. Here are strategies for effective linking:</p>
+
+      <h3>Bidirectional links to concept notes</h3>
+      <p>After reading a converted X article, add <code>[[wiki-links]]</code> to connect it to your existing concept notes. If the article discusses a concept you do not have a note for yet, create one. Over time, your concept notes accumulate references from multiple X articles, building a rich, multi-perspective understanding.</p>
+
+      <h3>Maps of Content (MOCs)</h3>
+      <p>Create MOC notes for topics you frequently save X articles about. A MOC for "AI Research" might link to a dozen X articles, your own notes, and relevant papers. This gives you a curated entry point into the topic.</p>
+
+      <h3>Inline annotations</h3>
+      <p>Add your own commentary directly within the converted article using Obsidian's callout syntax or by prefixing your notes with a marker like <code>&gt; [!note]</code>. This keeps your reactions connected to the specific content that triggered them.</p>
+
+      <h2>What Is the Best Workflow for Processing X Articles in Obsidian?</h2>
+      <p>A sustainable workflow for capturing X content at scale:</p>
+
+      <ol>
+        <li><strong>Capture:</strong> When you find a valuable X article or thread, immediately convert it with <a href="https://xtomd.com">xtomd.com</a> and save it to your vault with the <code>status: unprocessed</code> frontmatter tag.</li>
+        <li><strong>Review:</strong> During a weekly review session, go through unprocessed articles. Read them carefully, add highlights, annotations, and links to existing notes. Change the status to <code>reviewed</code>.</li>
+        <li><strong>Integrate:</strong> When an article's ideas become relevant to a project or topic you are actively developing, extract the key insights into your own notes and link back to the source. Change the status to <code>integrated</code>.</li>
+      </ol>
+
+      <p>This three-stage workflow prevents the common PKM problem of collecting content without ever processing it. The status field gives you a clear queue to work through.</p>
+
+      <h2>Can I Use Dataview to Query My X Article Collection?</h2>
+      <p>Yes. If you use the Dataview plugin, your YAML frontmatter becomes queryable. Here are useful queries:</p>
+
+      <h3>All unprocessed X articles</h3>
+      <pre><code>```dataview
+TABLE author, date, tags
+FROM "Sources/X-Articles"
+WHERE status = "unprocessed"
+SORT date DESC
+```</code></pre>
+
+      <h3>Articles by a specific author</h3>
+      <pre><code>```dataview
+LIST
+FROM "Sources/X-Articles"
+WHERE author = "@username"
+SORT date DESC
+```</code></pre>
+
+      <h3>Recent articles on a topic</h3>
+      <pre><code>```dataview
+TABLE author, date
+FROM "Sources/X-Articles"
+WHERE contains(tags, "ai")
+SORT date DESC
+LIMIT 10
+```</code></pre>
+
+      <div class="tip-box">
+        <p><strong>Tip:</strong> Create a dashboard note in your vault with these Dataview queries embedded. This gives you an always-current overview of your X article collection.</p>
+      </div>
+
+      <h2>Does This Work with X Threads, Not Just Articles?</h2>
+      <p>Yes. <a href="https://xtomd.com">xtomd.com</a> handles both X Articles (the long-form format) and multi-tweet threads. For threads, the tool combines all tweets into a single coherent Markdown document. The result is a clean, readable note that captures the full thread content without the clutter of the X interface.</p>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>How do I save X articles to Obsidian?</h3>
+          <p>Go to <a href="https://xtomd.com">xtomd.com</a>, paste the article URL, click Convert, and download the <code>.md</code> file into your Obsidian vault. All formatting is preserved automatically.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does the Markdown from xtomd.com work in Obsidian?</h3>
+          <p>Yes. The output is standard Markdown that renders perfectly in Obsidian, including headings, bold, italic, lists, links, and images.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How should I organize X articles in my Obsidian vault?</h3>
+          <p>Create a dedicated folder like <code>Sources/X-Articles</code>. Add YAML frontmatter with author, date, source URL, and tags. Use Obsidian's linking features to connect articles to your concept notes and MOCs.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I save X threads to Obsidian?</h3>
+          <p>Yes. xtomd.com converts entire threads into a single Markdown document. Paste the thread URL, convert, and save to your vault.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What Obsidian plugins work well with X article notes?</h3>
+          <p>Dataview is the most useful plugin for querying your X article collection by author, date, topic, or status. Templater can automate the creation of frontmatter templates for new article notes.</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <h3>Start Building Your X Content Library in Obsidian</h3>
+        <p>Convert any X article or thread to clean Markdown and add it to your vault in seconds.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
+      </div>
+    </article>
+
+    <footer class="blog-footer">
+      <p>&copy; 2026 xtomd.com. Free and open source. Built for the AI and PKM community.</p>
+    </footer>
+  </div>
+</body>
+</html>

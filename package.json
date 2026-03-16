@@ -1,0 +1,16 @@
+{
+  "name": "xarticle-to-md",
+  "version": "1.0.0",
+  "description": "Convert X (Twitter) articles to clean Markdown",
+  "scripts": {
+    "dev": "npx wrangler pages dev public --port 8788",
+    "deploy": "npx wrangler pages deploy public --project-name xarticle-to-md"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "wrangler": "^4.73.0"
+  }
+}
