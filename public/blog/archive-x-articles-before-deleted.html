@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How to Archive X Articles Before They Get Deleted | xtomd.com</title>
+  <meta name="description" content="X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally for permanent access.">
+  <meta name="keywords" content="archive x articles, save x articles, x article deleted, twitter article archive, preserve x content">
+  <link rel="canonical" href="https://xtomd.com/blog/archive-x-articles-before-deleted.html">
+  <meta property="og:title" content="How to Archive X Articles Before They Get Deleted">
+  <meta property="og:description" content="X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally for permanent access.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xtomd.com/blog/archive-x-articles-before-deleted.html">
+  <meta property="og:site_name" content="xtomd.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Archive X Articles Before They Get Deleted">
+  <meta name="twitter:description" content="X content disappears without warning. Convert to Markdown and store locally.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .blog-nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .blog-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-nav-links a:hover {
+      color: var(--text);
+    }
+    .blog-article h1 {
+      font-size: 1.85rem;
+      text-align: left;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .blog-meta {
+      font-size: 0.825rem;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+    }
+    .blog-article h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-article h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-article p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .blog-article ul, .blog-article ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .blog-article li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .blog-article code {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+    }
+    .blog-article strong {
+      font-weight: 700;
+    }
+    .blog-article a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-soft);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.15s;
+    }
+    .blog-article a:hover {
+      text-decoration-color: var(--accent);
+    }
+    .blog-cta {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .blog-cta h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .blog-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+    .blog-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .blog-cta-btn:hover {
+      background: var(--primary-hover);
+      color: var(--bg);
+      text-decoration: none;
+    }
+    .faq-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .faq-section h2 {
+      margin-top: 0;
+    }
+    .faq-item {
+      margin-bottom: 1.25rem;
+    }
+    .faq-item h3 {
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .blog-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      padding-bottom: 1rem;
+    }
+    .blog-related {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .blog-related h2 {
+      margin-top: 0;
+    }
+    .blog-related ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .blog-related li {
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .blog-article h1 { font-size: 1.4rem; }
+      .blog-article h2 { font-size: 1.1rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Archive X Articles Before They Get Deleted",
+    "description": "X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally for permanent access.",
+    "author": {
+      "@type": "Organization",
+      "name": "xtomd.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "xtomd.com",
+      "url": "https://xtomd.com"
+    },
+    "datePublished": "2026-03-16",
+    "dateModified": "2026-03-16",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://xtomd.com/blog/archive-x-articles-before-deleted.html"
+    },
+    "url": "https://xtomd.com/blog/archive-x-articles-before-deleted.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <nav class="blog-nav">
+      <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
+      <div class="blog-nav-links">
+        <a href="https://xtomd.com">Home</a>
+        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+      </div>
+    </nav>
+
+    <article class="blog-article">
+      <h1>How to Archive X Articles Before They Get Deleted</h1>
+      <p class="blog-meta">Updated March 2026 &middot; 7 min read</p>
+
+      <p>X content disappears all the time. Accounts get suspended, posts get deleted, articles vanish without warning. If you didn't save it, it's gone forever. This isn't paranoia — it's a documented reality on a platform where your saved content depends entirely on someone else's account staying active and in good standing.</p>
+
+      <p>The good news? You can preserve X articles permanently by converting them to Markdown files and storing them locally. Here's how.</p>
+
+      <h2>Why does X content disappear so quickly?</h2>
+
+      <p>X articles vanish for several reasons:</p>
+
+      <p><strong>Account suspensions</strong> happen without warning. Someone posts controversial content, violates platform rules (rightly or wrongly), or gets caught in a moderation sweep. Their account disappears. All their articles go with it.</p>
+
+      <p><strong>Voluntary deletions</strong> are another culprit. Writers delete their own posts after second-guessing them. They change their minds about sharing certain insights. They rebrand and clean up old content. Your bookmark now points to nothing.</p>
+
+      <p><strong>Policy changes</strong> eliminate access to entire sections of the platform. API restrictions make old archival tools stop working. Features get deprecated. What was accessible yesterday becomes inaccessible today.</p>
+
+      <p><strong>Link rot</strong> is real. Even if an article stays up, the URL structure changes or the domain shifts. You're left with a dead link.</p>
+
+      <p>The core problem: X content exists at the mercy of the platform.</p>
+
+      <h2>Why bookmarks aren't enough</h2>
+
+      <p>Your browser bookmarks are just references — pointers to URLs. They don't store the actual content. They don't preserve the article text, formatting, images, or publication date. They save a link and a title. Nothing more.</p>
+
+      <p>When an X article gets deleted, your bookmark becomes a ghost. It still exists in your bookmarks folder, but clicking it leads nowhere. You have the reference but not the content.</p>
+
+      <p>Archiving as Markdown solves this completely. Your content is stored as a static file on your device. No platform, no API, no account suspension can touch it.</p>
+
+      <h2>The solution: Convert to Markdown and store locally</h2>
+
+      <p>Markdown files are simple, portable, and permanent. They open in any text editor on any device. They work offline. They survive platform collapses. They're readable fifty years from now on technology we haven't invented yet.</p>
+
+      <p>Converting X articles to Markdown takes the article's text, headings, formatting, and metadata, then saves it as a <code>.md</code> file you own completely. No platform, no restrictions, no expiration date.</p>
+
+      <p>This is where <a href="https://xtomd.com">xtomd.com</a> comes in.</p>
+
+      <h2>Step-by-step: Archive your first X article with xtomd.com</h2>
+
+      <h3>Step 1: Copy the X article URL</h3>
+      <p>Navigate to the X article you want to save. Copy the full URL from your browser's address bar. It should look something like: <code>x.com/username/status/1234567890</code></p>
+
+      <h3>Step 2: Go to xtomd.com</h3>
+      <p>Open <a href="https://xtomd.com">xtomd.com</a> in your browser. You'll see a simple input field. Paste the X article URL into it.</p>
+
+      <h3>Step 3: Convert to Markdown</h3>
+      <p>Click the convert button. xtomd processes the article and generates a clean Markdown version. This typically takes a few seconds.</p>
+
+      <h3>Step 4: Download and save</h3>
+      <p>Download the <code>.md</code> file to your computer. Name it something meaningful — include the author, date, or topic so you can find it later. Save it to a dedicated folder on your device or sync it to cloud storage.</p>
+
+      <p>That's it. You now have a permanent copy of that article.</p>
+
+      <h2>What gets preserved in the conversion</h2>
+
+      <p>xtomd converts more than just text. Here's what you get in your Markdown file:</p>
+
+      <ul>
+        <li><strong>Full article text</strong> exactly as it appeared on X</li>
+        <li><strong>Headings and formatting</strong> including bold, italics, and links</li>
+        <li><strong>Images as URLs</strong> embedded in the Markdown file for reference</li>
+        <li><strong>Author information</strong> including username and profile details</li>
+        <li><strong>Publication date and timestamp</strong> so you know when it was posted</li>
+        <li><strong>Engagement metrics</strong> like reply counts and like counts at the time of archival</li>
+        <li><strong>Thread structure</strong> if it's a multi-tweet article, preserved in order</li>
+      </ul>
+
+      <h2>Where to store your X article archive</h2>
+
+      <p>Don't just download and forget. Set up a system:</p>
+
+      <p><strong>Local folder on your computer:</strong> Create a dedicated directory organized by topic, author, or date. Simple and full control.</p>
+
+      <p><strong>Obsidian vault:</strong> Use xtomd files as raw material for your knowledge management system. Tag them, link them, integrate them with your notes.</p>
+
+      <p><strong>Notion database:</strong> Create a Notion table with columns for author, date, topic, and tags. Embed or link the <code>.md</code> files. Searchable and accessible anywhere.</p>
+
+      <p><strong>Google Drive or Dropbox:</strong> Sync your archive folder to cloud storage. Access archived articles from any device. Automatic backups.</p>
+
+      <p><strong>GitHub repository:</strong> Version control your entire archive. Track what you saved and when. Share it with colleagues or the public if you want. Permanent historical record.</p>
+
+      <p>Pick one system and stick with it. Consistency matters more than perfection.</p>
+
+      <h2>Building a systematic archive habit</h2>
+
+      <p>Random archiving creates a mess. Build a habit instead:</p>
+
+      <p><strong>Weekly sweep:</strong> Every Sunday, archive the 3-5 X articles from the past week that stuck with you. Takes fifteen minutes. Done.</p>
+
+      <p><strong>Tag as you save:</strong> Use consistent naming conventions. Include the author's name and topic. <code>author-topic-date.md</code> works well.</p>
+
+      <p><strong>Review quarterly:</strong> Every three months, browse your archive. You'll rediscover forgotten insights and spot gaps in what you're saving.</p>
+
+      <p><strong>Combine with note-taking:</strong> Don't just download and abandon. Read the article, highlight key points, add your thoughts in the Markdown file. Your archive becomes a learning tool, not just a graveyard.</p>
+
+      <div class="faq-section">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+          <h3>Can I archive X articles if the account is already suspended?</h3>
+          <p>Not through xtomd. If the article is gone, it's gone. But if you have the URL in your browser history or a web archive, try the Wayback Machine first to check if Internet Archive saved it.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Will the images in my Markdown file display offline?</h3>
+          <p>No. Images are stored as URLs, not embedded files. They'll display if you have internet access, but not offline. If you need full offline access, manually download images and adjust the URLs in your .md file.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How much storage do I need for an X article archive?</h3>
+          <p>Markdown files are tiny. Most articles are 20-50 KB. You could store thousands of archived articles in less than 1 GB.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if xtomd.com goes down?</h3>
+          <p>Your .md files are safe. They're stored on your device or cloud storage, not on xtomd's servers. The tool only matters for the initial conversion.</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <h3>Start Archiving X Articles Now</h3>
+        <p>Paste any X article URL and download the Markdown file to keep forever.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
+      </div>
+
+      <div class="blog-related">
+        <h2>Related Articles</h2>
+        <ul>
+          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
+          <li><a href="https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html">Twitter to Notion: The Complete 2026 Guide</a></li>
+          <li><a href="https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html">Best Free Tools to Convert Tweets to Markdown in 2026</a></li>
+          <li><a href="https://xtomd.com/blog/x-articles-vs-threads-differences-convert.html">X Articles vs Threads: Differences and How to Convert Both</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <footer class="blog-footer">
+      <p>&copy; 2026 xtomd.com. Free and open source. Built for the AI and PKM community.</p>
+    </footer>
+  </div>
+</body>
+</html>

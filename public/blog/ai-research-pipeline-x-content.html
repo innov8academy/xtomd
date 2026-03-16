@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Building an AI Research Pipeline with X Content and Claude | xtomd.com</title>
+  <meta name="description" content="Turn scattered X articles into a research system. Convert with xtomd.com, organize Markdown, feed to Claude for analysis.">
+  <meta name="keywords" content="ai research pipeline x content, claude x articles, research workflow markdown, x content analysis">
+  <link rel="canonical" href="https://xtomd.com/blog/ai-research-pipeline-x-content.html">
+  <meta property="og:title" content="Building an AI Research Pipeline with X Content and Claude">
+  <meta property="og:description" content="Turn scattered X articles into a research system. Convert with xtomd.com, organize Markdown, feed to Claude.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xtomd.com/blog/ai-research-pipeline-x-content.html">
+  <meta property="og:site_name" content="xtomd.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building an AI Research Pipeline with X Content and Claude">
+  <meta name="twitter:description" content="Turn scattered X articles into a research system with xtomd.com and Claude.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .blog-nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .blog-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-nav-links a:hover {
+      color: var(--text);
+    }
+    .blog-article h1 {
+      font-size: 1.85rem;
+      text-align: left;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .blog-meta {
+      font-size: 0.825rem;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+    }
+    .blog-article h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-article h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-article p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .blog-article ul, .blog-article ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .blog-article li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .blog-article code {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+    }
+    .blog-article pre {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .blog-article pre code {
+      border: none;
+      padding: 0;
+      background: none;
+    }
+    .blog-article strong {
+      font-weight: 700;
+    }
+    .blog-article a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-soft);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.15s;
+    }
+    .blog-article a:hover {
+      text-decoration-color: var(--accent);
+    }
+    .blog-cta {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .blog-cta h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .blog-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+    .blog-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .blog-cta-btn:hover {
+      background: var(--primary-hover);
+      color: var(--bg);
+      text-decoration: none;
+    }
+    .faq-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .faq-section h2 {
+      margin-top: 0;
+    }
+    .faq-item {
+      margin-bottom: 1.25rem;
+    }
+    .faq-item h3 {
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .blog-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      padding-bottom: 1rem;
+    }
+    .blog-related {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .blog-related h2 {
+      margin-top: 0;
+    }
+    .blog-related ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .blog-related li {
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .blog-article h1 { font-size: 1.4rem; }
+      .blog-article h2 { font-size: 1.1rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Building an AI Research Pipeline with X Content and Claude",
+    "description": "Turn scattered X articles into a research system. Convert with xtomd.com, organize Markdown, feed to Claude for analysis.",
+    "author": {
+      "@type": "Organization",
+      "name": "xtomd.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "xtomd.com",
+      "url": "https://xtomd.com"
+    },
+    "datePublished": "2026-03-16",
+    "dateModified": "2026-03-16",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://xtomd.com/blog/ai-research-pipeline-x-content.html"
+    },
+    "url": "https://xtomd.com/blog/ai-research-pipeline-x-content.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <nav class="blog-nav">
+      <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
+      <div class="blog-nav-links">
+        <a href="https://xtomd.com">Home</a>
+        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+      </div>
+    </nav>
+
+    <article class="blog-article">
+      <h1>Building an AI Research Pipeline with X Content and Claude</h1>
+      <p class="blog-meta">Updated March 2026 &middot; 10 min read</p>
+
+      <p>If you're regularly pulling insights from X content, you need a system. Not a one-off copy-paste, but a pipeline that takes X URLs in and gives you structured analysis out.</p>
+
+      <p>Right now, you're probably doing this: Find an interesting article on X. Open it. Copy the text. Paste it into a doc. Maybe paste it into Claude. Get an analysis back. Move on. Do it again tomorrow. By next week, you've got 20 articles scattered across tabs, emails, and notes with no way to track what you learned.</p>
+
+      <p>Here's the thing: manual research doesn't scale. You lose context across articles. You can't easily compare findings or spot trends. You're spending more time organizing than analyzing.</p>
+
+      <p>This post walks you through building a research pipeline — a repeatable system that converts X articles to structured Markdown, feeds them to Claude for analysis, and gives you organized outputs you can actually use.</p>
+
+      <h2>Why Ad-Hoc Research Breaks Down</h2>
+
+      <p>When you're pulling from X, you're usually working with:</p>
+
+      <ul>
+        <li><strong>Thread links</strong> that disappear if the author deletes them</li>
+        <li><strong>Screenshot threads</strong> that lose context and aren't searchable</li>
+        <li><strong>One-off analyses</strong> that exist in your notes but don't connect to anything else</li>
+        <li><strong>No version control</strong> — you're not tracking what changed between reads</li>
+      </ul>
+
+      <p>Manual research is fine if you're doing it once a month. But if you're monitoring industry trends, tracking competitor moves, or synthesizing multiple sources, you need structure. The moment you hit 5-10 articles, the friction increases exponentially.</p>
+
+      <h2>Your Research Pipeline: The Flow</h2>
+
+      <p>Here's the architecture:</p>
+
+      <pre><code>X URL &rarr; xtomd.com (conversion) &rarr; Local storage (.md) &rarr; Claude (analysis) &rarr; Paired output files</code></pre>
+
+      <p>Each stage has a specific job. X URLs are messy, inconsistent, and temporary. <a href="https://xtomd.com">xtomd.com</a> standardizes them into Markdown. Claude turns that Markdown into structured insights. You store both the source and the analysis as a pair.</p>
+
+      <h2>Step 1: Collecting X URLs (Pick Your Trigger)</h2>
+
+      <p>You need a consistent way to capture links. Common triggers:</p>
+
+      <ul>
+        <li><strong>Direct bookmarking</strong> — Command+D when you land on an article worth analyzing</li>
+        <li><strong>Lists in X</strong> — Create private lists of accounts you monitor, check them weekly</li>
+        <li><strong>Saved links</strong> — Use X's bookmark feature, then export them periodically</li>
+        <li><strong>Topic monitoring</strong> — Set up keyword searches for specific domains or keywords</li>
+      </ul>
+
+      <p>The key: store all your links in one place. A text file, a Notion database, a spreadsheet. Whatever. Just not scattered across your browser bookmarks and email.</p>
+
+      <h2>Step 2: Batch Converting to Markdown</h2>
+
+      <p>This is where <a href="https://xtomd.com">xtomd.com</a> comes in. Instead of converting one article at a time, batch them weekly or when you've accumulated 5-10 links.</p>
+
+      <p>For each X URL, go to xtomd.com and paste the link. The service converts it to clean Markdown.</p>
+
+      <p><strong>Naming convention matters here:</strong> Save each file as <code>{author}-{date}-{topic}.md</code>. Example: <code>sama-2025-03-11-ai-scaling.md</code>. This makes searching and sorting trivial.</p>
+
+      <h2>Step 3: Organizing Your Markdown Library</h2>
+
+      <p>Add a metadata header to each file. Two minutes per file saves you days of searching later.</p>
+
+      <pre><code>---
+source_url: https://x.com/...
+author: Name
+date: 2025-03-11
+topic: ai-scaling
+keywords: llm, inference, optimization
+status: unanalyzed
+---</code></pre>
+
+      <p>This YAML front matter makes your files searchable. You can filter by topic, date range, or status. If you use Obsidian, Logseq, or any Markdown editor with metadata support, you can build queries on top of this.</p>
+
+      <h2>Step 4: Feeding to Claude for Analysis</h2>
+
+      <p>Here's where the research becomes actionable.</p>
+
+      <p><strong>Single article analysis:</strong> Paste one Markdown file into Claude. Ask for: key claims, evidence, gaps, relevance to your work, follow-up questions.</p>
+
+      <p>Prompt example:</p>
+
+      <pre><code>Analyze this article for:
+1. Core claims
+2. Supporting evidence
+3. Gaps or weaknesses
+4. How it applies to [your context]
+5. Questions this raises</code></pre>
+
+      <p><strong>Multi-article synthesis:</strong> Paste three related articles into Claude. Ask for: common themes, contradictions, what's new, which author was right. You're seeing patterns across sources in one go.</p>
+
+      <p><strong>Trend identification:</strong> Feed Claude 10 articles on AI safety from the past month. Ask: What's the consensus shifting toward? What's controversial? What are people missing?</p>
+
+      <p>Save Claude's response as a <code>.analysis.md</code> file paired with the source:</p>
+
+      <pre><code>sama-2025-03-11-ai-scaling.md           (source)
+sama-2025-03-11-ai-scaling.analysis.md  (analysis)</code></pre>
+
+      <h2>Step 5: Storing and Tracking Analysis Output</h2>
+
+      <p>Create two parallel folders:</p>
+
+      <pre><code>research/
+  ├── sources/           (original .md files)
+  └── analyses/          (Claude output)</code></pre>
+
+      <p>When you analyze an article, update the metadata status to "analyzed" with the analysis date and tool used. This gives you a searchable research history.</p>
+
+      <h2>Real Example: Monitoring AI Thought Leaders</h2>
+
+      <p>Let's say you follow 10 accounts on X posting about AI and product strategy. Here's your weekly workflow:</p>
+
+      <p><strong>Monday morning:</strong> Check those accounts, collect new article links. You've got 7 new pieces.</p>
+
+      <p><strong>Tuesday:</strong> Batch convert all 7 to Markdown using xtomd.com. Save them with naming convention.</p>
+
+      <p><strong>Wednesday:</strong> Skim all 7 articles quickly. Pick 3-4 that matter most. Feed them to Claude with: "Synthesize these articles. What's the consensus on enterprise adoption? Where do these authors disagree?"</p>
+
+      <p><strong>Thursday:</strong> Get Claude's synthesis. Save it as a synthesis file. You now have a structured view of what top thinkers are saying this week.</p>
+
+      <p><strong>Friday:</strong> Reference the synthesis when writing your own content, making product decisions, or just staying informed.</p>
+
+      <p>Over a year, you've built a searchable archive of insights paired with sources. You can see how the conversation evolved. You can find expert takes on specific questions instantly. You can't do this with browser bookmarks.</p>
+
+      <h2>For Developers: Programmatic Approach with xtomd API</h2>
+
+      <p>If you're processing 20+ URLs regularly, use xtomd.com's API endpoint directly. No web interface needed.</p>
+
+      <pre><code>curl -X POST https://xtomd.com/api/fetch \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://x.com/..."}'</code></pre>
+
+      <p>Pipe this into your local research folder with a script, then feed the results to Claude's API programmatically. Automation handles the repetitive work. You focus on synthesizing insights.</p>
+
+      <div class="faq-section">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+          <h3>Should I convert every X article I read?</h3>
+          <p>No. Convert articles you might reference again or articles worth comparing to others. The pipeline pays off when you're doing comparative research or building a knowledge base.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How often should I batch process URLs?</h3>
+          <p>Weekly works for most people. If you're processing 2-3 links per day, batch them weekly. The point is consistency, not frequency.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if I want to share this research with a team?</h3>
+          <p>Store your research folder in Git or cloud storage. Each person still does their own analysis — the source files are shared reference material.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I do this with other markdown converters?</h3>
+          <p>Yes, but xtomd specifically handles X content well, preserves threading structure, and handles edge cases. For X research specifically, it's worth the integration.</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <h3>Start Your Research Pipeline Today</h3>
+        <p>Convert your first X article to Markdown and begin building a structured knowledge base.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
+      </div>
+
+      <div class="blog-related">
+        <h2>Related Articles</h2>
+        <ul>
+          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
+          <li><a href="https://xtomd.com/blog/feed-x-articles-to-claude.html">Feed X Articles to Claude: Step-by-Step Guide</a></li>
+          <li><a href="https://xtomd.com/blog/why-markdown-best-format-ai-analysis.html">Why Markdown is the Best Format for AI Analysis</a></li>
+          <li><a href="https://xtomd.com/blog/ai-agent-workflows-x-content.html">How AI Agents Can Use X Content with xtomd.com</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <footer class="blog-footer">
+      <p>&copy; 2026 xtomd.com. Free and open source. Built for the AI and PKM community.</p>
+    </footer>
+  </div>
+</body>
+</html>

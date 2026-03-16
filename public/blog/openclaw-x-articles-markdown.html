@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How to Use OpenClaw with X Articles — Convert to Markdown First | xtomd.com</title>
+  <meta name="description" content="OpenClaw's bird CLI and web_fetch can't read X articles. Here's the 30-second fix: convert to Markdown with xtomd.com, then feed it to your agent.">
+  <meta name="keywords" content="openclaw x article markdown, openclaw web_fetch, openclaw bird cli, x article to markdown">
+  <link rel="canonical" href="https://xtomd.com/blog/openclaw-x-articles-markdown.html">
+  <meta property="og:title" content="How to Use OpenClaw with X Articles — Convert to Markdown First">
+  <meta property="og:description" content="OpenClaw's bird CLI and web_fetch can't read X articles. Here's the 30-second fix: convert to Markdown with xtomd.com, then feed it to your agent.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://xtomd.com/blog/openclaw-x-articles-markdown.html">
+  <meta property="og:site_name" content="xtomd.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Use OpenClaw with X Articles — Convert to Markdown First">
+  <meta name="twitter:description" content="OpenClaw's bird CLI and web_fetch can't read X articles. Convert to Markdown with xtomd.com first.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .blog-nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .blog-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-nav-links a:hover {
+      color: var(--text);
+    }
+    .blog-article h1 {
+      font-size: 1.85rem;
+      text-align: left;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .blog-meta {
+      font-size: 0.825rem;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+    }
+    .blog-article h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-article h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-article p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .blog-article ul, .blog-article ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .blog-article li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .blog-article code {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.4rem;
+    }
+    .blog-article strong {
+      font-weight: 700;
+    }
+    .blog-article a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--accent-soft);
+      text-underline-offset: 2px;
+      transition: text-decoration-color 0.15s;
+    }
+    .blog-article a:hover {
+      text-decoration-color: var(--accent);
+    }
+    .blog-cta {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .blog-cta h3 {
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .blog-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+    .blog-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      background: var(--primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .blog-cta-btn:hover {
+      background: var(--primary-hover);
+      color: var(--bg);
+      text-decoration: none;
+    }
+    .faq-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .faq-section h2 {
+      margin-top: 0;
+    }
+    .faq-item {
+      margin-bottom: 1.25rem;
+    }
+    .faq-item h3 {
+      font-size: 0.95rem;
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+    .blog-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      padding-bottom: 1rem;
+    }
+    .blog-related {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .blog-related h2 {
+      margin-top: 0;
+    }
+    .blog-related ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .blog-related li {
+      margin-bottom: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .blog-article h1 { font-size: 1.4rem; }
+      .blog-article h2 { font-size: 1.1rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Use OpenClaw with X Articles — Convert to Markdown First",
+    "description": "OpenClaw's bird CLI and web_fetch can't read X articles. Here's the 30-second fix: convert to Markdown with xtomd.com, then feed it to your agent.",
+    "author": {
+      "@type": "Organization",
+      "name": "xtomd.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "xtomd.com",
+      "url": "https://xtomd.com"
+    },
+    "datePublished": "2026-03-16",
+    "dateModified": "2026-03-16",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://xtomd.com/blog/openclaw-x-articles-markdown.html"
+    },
+    "url": "https://xtomd.com/blog/openclaw-x-articles-markdown.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <nav class="blog-nav">
+      <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
+      <div class="blog-nav-links">
+        <a href="https://xtomd.com">Home</a>
+        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+      </div>
+    </nav>
+
+    <article class="blog-article">
+      <h1>How to Use OpenClaw with X Articles — Convert to Markdown First</h1>
+      <p class="blog-meta">Updated March 2026 &middot; 5 min read</p>
+
+      <p>If you've tried getting OpenClaw to read an X article, you already know the problem. It doesn't work. The <code>web_fetch</code> tool returns empty garbage, the <code>bird</code> CLI throws errors half the time, and you're stuck copy-pasting like it's 2019.</p>
+
+      <p>Here's the fix. Convert the X article to Markdown first using <a href="https://xtomd.com">xtomd.com</a>, then feed the clean <code>.md</code> file to your OpenClaw agent. Takes 30 seconds.</p>
+
+      <h2>Why OpenClaw Can't Read X Articles Directly</h2>
+
+      <p>OpenClaw's <code>web_fetch</code> tool makes a plain HTTP GET request and tries to extract readable content from the raw HTML. The problem? X doesn't serve content in the HTML response. It loads everything through JavaScript after the page renders in a browser.</p>
+
+      <p>So when OpenClaw hits an X article URL, it gets back a JavaScript shell with no actual content inside. The Readability parser finds nothing. Firecrawl (if you've configured it) sometimes works, sometimes doesn't — X actively blocks server-side fetches and rotates its anti-bot measures.</p>
+
+      <p>The <code>bird</code> CLI skill is supposed to handle X content through GraphQL queries and cookie-based auth. In practice, it breaks regularly. X updates its internal API endpoints without warning, cookies expire, and the authentication flow is fragile. You'll spend more time debugging <code>bird</code> than actually analyzing content.</p>
+
+      <p>This isn't an OpenClaw bug. It's an X problem. The platform is designed to keep content locked inside its walled garden.</p>
+
+      <h2>The Fix: xtomd.com as Your Preprocessing Step</h2>
+
+      <p>Instead of fighting X's anti-scraping measures, go around them.</p>
+
+      <ol>
+        <li>Copy the X article URL from your browser</li>
+        <li>Open <a href="https://xtomd.com">xtomd.com</a> and paste the URL</li>
+        <li>Click <strong>Convert</strong></li>
+        <li>Copy the Markdown output or download the <code>.md</code> file</li>
+      </ol>
+
+      <p>That's it. You now have clean, structured Markdown with all the headings, bold text, lists, images, and metadata preserved.</p>
+
+      <h2>How to Feed It to Your OpenClaw Agent</h2>
+
+      <p>Once you have the Markdown, there are a few ways to get it into OpenClaw:</p>
+
+      <p><strong>Option A: Paste directly into chat.</strong> If you're running OpenClaw through WhatsApp, Telegram, Discord, or the web UI, just paste the Markdown into your conversation. Tell the agent what you want: "Summarize this," "Find the key arguments," "What's wrong with this analysis?"</p>
+
+      <p><strong>Option B: Save as a file and reference it.</strong> Download the <code>.md</code> file from xtomd.com. Drop it into a folder OpenClaw can access. Then tell your agent: "Read the file at ~/downloads/article.md and give me a summary."</p>
+
+      <p><strong>Option C: Use it in an automated workflow.</strong> If you're building OpenClaw skills or agent pipelines, you can call xtomd.com's API endpoint (<code>POST /api/fetch</code>) to programmatically convert X URLs to Markdown before passing them to your agent. No browser needed.</p>
+
+      <h2>Real Use Cases</h2>
+
+      <p><strong>Analyzing someone's X article about your industry.</strong> You see a long-form X article breaking down market trends in your space. Instead of reading it yourself, convert to Markdown and ask OpenClaw to extract the key data points, identify claims without evidence, and compare it to what you already know.</p>
+
+      <p><strong>Monitoring competitor announcements.</strong> A competitor publishes a product update as an X article. Convert it, feed it to OpenClaw, and ask for a competitive analysis. What features did they ship? What's missing? How does it compare to your roadmap?</p>
+
+      <p><strong>Research aggregation.</strong> You have 5 different X articles from different authors on the same topic. Convert each one to Markdown, feed them all to OpenClaw, and ask it to synthesize the viewpoints, find disagreements, and identify the consensus.</p>
+
+      <p><strong>Content repurposing.</strong> Found an X article with great ideas you want to riff on? Convert to Markdown, give it to OpenClaw, and ask it to draft a response post, a newsletter section, or talking points for a video.</p>
+
+      <h2>Why Markdown Specifically?</h2>
+
+      <p>You might wonder why you can't just screenshot the article or copy-paste the raw text. You can, but the results are worse.</p>
+
+      <p>Markdown preserves structure. When an X article has headings, bold text, numbered lists, and blockquotes, all of that context helps the AI understand the hierarchy of ideas. A flat wall of text loses that signal.</p>
+
+      <p>Markdown is also lightweight. No HTML tags, no CSS, no JavaScript — just clean text with formatting markers. OpenClaw processes it faster and more accurately than raw HTML or rich text.</p>
+
+      <div class="faq-section">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+          <h3>Does xtomd.com work with regular tweets too, not just articles?</h3>
+          <p>Yes. Paste any public X URL — articles, regular tweets, quote tweets. You'll get the content as clean Markdown with metadata (author, date, engagement stats).</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is xtomd.com free?</h3>
+          <p>Completely free. No login, no account, no usage limits. The tool runs on Cloudflare's free tier.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I automate this with OpenClaw?</h3>
+          <p>Yes. You can build an OpenClaw skill that calls xtomd.com's API endpoint, converts the response to Markdown, and pipes it into your analysis workflow. The endpoint is <code>POST /api/fetch</code> with the X URL as the body.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if the X article gets deleted later?</h3>
+          <p>Once you've converted it to Markdown and saved the <code>.md</code> file, you have a permanent copy. The content is yours regardless of what happens on X.</p>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <h3>Convert an X Article to Markdown Now</h3>
+        <p>Paste any X article URL and have your OpenClaw agent analyzing it in under a minute.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
+      </div>
+
+      <div class="blog-related">
+        <h2>Related Articles</h2>
+        <ul>
+          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
+          <li><a href="https://xtomd.com/blog/feed-x-articles-to-claude.html">Feed X Articles to Claude: Step-by-Step Guide</a></li>
+          <li><a href="https://xtomd.com/blog/ai-agent-workflows-x-content.html">How AI Agents Can Use X Content with xtomd.com</a></li>
+          <li><a href="https://xtomd.com/blog/ai-research-pipeline-x-content.html">Building an AI Research Pipeline with X Content</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <footer class="blog-footer">
+      <p>&copy; 2026 xtomd.com. Free and open source. Built for the AI and PKM community.</p>
+    </footer>
+  </div>
+</body>
+</html>
