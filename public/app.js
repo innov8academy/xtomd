@@ -119,6 +119,10 @@
       markdownOutput.value = markdown;
       outputSection.hidden = false;
       charCount.textContent = `${formatNumber(markdown.length)} chars`;
+      trackEvent("convert_success", {
+        contentType: data.article ? "article" : "tweet",
+        charCount: markdown.length,
+      });
       showStatus(
         data.article
           ? `Article converted: "${data.article.title}"${data.cached ? " (cached)" : ""}`
@@ -386,6 +390,21 @@
   }
 
   // -----------------------------------------------------------------------
+  // Analytics — lightweight event tracking
+  // -----------------------------------------------------------------------
+
+  function trackEvent(event, data = {}) {
+    try {
+      navigator.sendBeacon(
+        "/api/event",
+        JSON.stringify({ event, ...data })
+      );
+    } catch {
+      // Silent fail — analytics should never break the app
+    }
+  }
+
+  // -----------------------------------------------------------------------
   // Helpers
   // -----------------------------------------------------------------------
 
@@ -423,6 +442,7 @@
     errorExamples.hidden = !showFormats;
     errorCard.hidden = false;
     statusEl.hidden = true;
+    trackEvent("convert_error", { errorTitle: title });
   }
 
   function hideError() {
@@ -446,6 +466,7 @@
   async function handleCopy() {
     const text = markdownOutput.value;
     if (!text) return;
+    trackEvent("copy", { charCount: text.length });
 
     try {
       await navigator.clipboard.writeText(text);
@@ -466,6 +487,7 @@
   function handleDownload() {
     const text = markdownOutput.value;
     if (!text) return;
+    trackEvent("download", { charCount: text.length });
 
     // Use article title or "x-article" as filename
     const titleMatch = text.match(/^# (.+)$/m);
