@@ -1,0 +1,113 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "xtomd API",
+    "description": "Convert X (Twitter) articles, tweets, and threads to clean Markdown. Free API for AI agents, no authentication required.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://xtomd.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://xtomd.com"
+    }
+  ],
+  "paths": {
+    "/api/markdown": {
+      "post": {
+        "operationId": "convertXToMarkdown",
+        "summary": "Convert an X (Twitter) URL to Markdown",
+        "description": "Takes an X/Twitter URL (article, tweet, thread, or note tweet) and returns the content as clean Markdown. Use this when you need to read content from an X URL.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The X (Twitter) URL to convert. Supports x.com and twitter.com URLs for articles, tweets, and threads.",
+                    "example": "https://x.com/naval/status/1002103360646823936"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully converted to Markdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "markdown": {
+                      "type": "string",
+                      "description": "The converted Markdown content"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The canonical X URL"
+                    },
+                    "author": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "handle": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string",
+                  "description": "Raw Markdown content (use Accept: text/markdown header)"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing URL"
+          },
+          "502": {
+            "description": "Could not fetch content from X (post may be private, deleted, or require authentication)"
+          }
+        }
+      }
+    },
+    "/api/fetch": {
+      "post": {
+        "operationId": "fetchXContent",
+        "summary": "Fetch raw X content as JSON",
+        "description": "Returns the raw JSON data from an X URL including full article blocks, media, engagement stats. Use /api/markdown instead if you just need readable content.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The X (Twitter) URL to fetch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Raw tweet/article data as JSON"
+          }
+        }
+      }
+    }
+  }
+}

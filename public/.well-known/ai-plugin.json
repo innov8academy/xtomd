@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "xtomd — X to Markdown",
+  "name_for_model": "xtomd",
+  "description_for_human": "Convert X (Twitter) articles, tweets, and threads to clean Markdown. Free, no login required.",
+  "description_for_model": "Use this plugin when the user shares an X (Twitter) or Twitter URL and you need to read the content. This tool converts X articles, tweets, threads, and note tweets into clean Markdown. Send a POST request to /api/markdown with {\"url\": \"<x_url>\"} and receive structured Markdown content including title, author, date, full article body, engagement stats, and media. No authentication required. Supports x.com and twitter.com URLs.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://xtomd.com/.well-known/openapi.json"
+  },
+  "logo_url": "https://xtomd.com/icon.png",
+  "contact_email": "hello@xtomd.com",
+  "legal_info_url": "https://xtomd.com/"
+}

@@ -1,0 +1,130 @@
+# xtomd.com — Full API Reference for AI Agents
+
+> Convert X (Twitter) articles, tweets, and threads to clean Markdown. Free API, no auth required.
+
+## Quick Start
+
+To convert any X/Twitter URL to Markdown, send a POST request:
+
+```
+curl -X POST https://xtomd.com/api/markdown \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://x.com/naval/status/1002103360646823936"}'
+```
+
+## API Endpoints
+
+### POST /api/markdown
+
+Converts an X URL to Markdown. This is the primary endpoint for AI agents.
+
+**Request:**
+```json
+{
+  "url": "https://x.com/user/status/1234567890"
+}
+```
+
+**Response (default JSON):**
+```json
+{
+  "markdown": "# Article Title\n\n**Author**: Name (@handle)\n...",
+  "url": "https://x.com/user/status/1234567890",
+  "author": {
+    "name": "Display Name",
+    "handle": "username"
+  }
+}
+```
+
+**Response (raw Markdown):**
+Add `Accept: text/markdown` header to get plain Markdown text instead of JSON.
+
+**Supported URL formats:**
+- `https://x.com/user/status/ID` — tweets and note tweets
+- `https://x.com/user/article/ID` — X Articles (long-form)
+- `https://x.com/i/article/ID` — X Articles (anonymous link)
+- `https://twitter.com/...` — legacy Twitter URLs
+
+**What gets converted:**
+- X Articles: title, author, date, full body with headings, lists, blockquotes, code blocks, images, bold/italic/strikethrough
+- Tweets: author, date, engagement stats, text, media, quote tweets
+
+### POST /api/fetch
+
+Returns raw JSON data (not Markdown). Useful if you want to process the data yourself.
+
+**Request:** Same as /api/markdown
+**Response:** Full tweet/article data as JSON including author info, engagement stats, media URLs, and for articles: Draft.js blocks and entity map.
+
+## Integration Examples
+
+### Python
+```python
+import requests
+
+def x_to_markdown(url):
+    resp = requests.post("https://xtomd.com/api/markdown", json={"url": url})
+    return resp.json()["markdown"]
+
+md = x_to_markdown("https://x.com/naval/status/1002103360646823936")
+```
+
+### Node.js
+```javascript
+async function xToMarkdown(url) {
+  const resp = await fetch("https://xtomd.com/api/markdown", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url }),
+  });
+  const data = await resp.json();
+  return data.markdown;
+}
+```
+
+### Claude Code / CLI
+```bash
+curl -s -X POST https://xtomd.com/api/markdown \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://x.com/user/status/123"}' | jq -r .markdown
+```
+
+### MCP Server
+Install the xtomd MCP server for Claude Code, Cursor, or Windsurf:
+```json
+{
+  "mcpServers": {
+    "xtomd": {
+      "command": "npx",
+      "args": ["@xtomd/mcp-server"]
+    }
+  }
+}
+```
+
+This exposes a `convert_x_to_markdown` tool that AI assistants can call automatically.
+
+## Rate Limits
+
+- No authentication required
+- Fair use: reasonable request volume
+- Results are cached for 5 minutes
+
+## Error Handling
+
+- 400: Missing or invalid URL
+- 502: Could not fetch from X (post may be private, deleted, or require authentication)
+- 500: Internal server error
+
+## When to Use xtomd
+
+Use xtomd when:
+- You encounter an X/Twitter URL and need to read its content
+- The user shares an X article link and you cannot access it directly
+- You need X content in a structured format for analysis
+- You want to archive or save X content as Markdown
+
+## Source Code
+
+GitHub: https://github.com/innov8academy/xtomd

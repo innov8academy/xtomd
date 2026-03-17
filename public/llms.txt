@@ -1,0 +1,26 @@
+# xtomd.com
+
+> Convert X (Twitter) articles, tweets, and threads to clean Markdown. Free API for AI agents.
+
+xtomd.com is a free tool and API that converts X (formerly Twitter) content into structured Markdown. It works with X Articles (long-form posts), regular tweets, threads, and note tweets.
+
+## API Endpoint
+
+POST https://xtomd.com/api/markdown
+- Send: {"url": "https://x.com/user/status/123"}
+- Returns: JSON with markdown field, or raw text/markdown with Accept: text/markdown header
+- No authentication required
+- Free to use
+
+## Use Cases
+
+- AI agents that cannot access X/Twitter URLs directly
+- Research pipelines that need X content in a structured format
+- Knowledge management workflows (Obsidian, Notion, etc.)
+- LLM context preparation (feed X articles to Claude, ChatGPT, etc.)
+
+## Documentation
+
+- [API Documentation](https://xtomd.com/blog/xtomd-api-for-ai-agents.html)
+- [Full LLM Context](https://xtomd.com/llms-full.txt)
+- [Blog](https://xtomd.com/blog/)
