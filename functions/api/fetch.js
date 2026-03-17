@@ -49,15 +49,6 @@ export async function onRequestPost(context) {
     });
     context.waitUntil(cache.put(cacheKey, cacheResponse));
 
-    // Log to Analytics Engine (server-side backup)
-    if (context.env.ANALYTICS) {
-      context.env.ANALYTICS.writeDataPoint({
-        blobs: ["api_fetch", parsed.type, "", ""],
-        doubles: [1],
-        indexes: ["api_fetch"],
-      });
-    }
-
     return jsonResponse(result);
   } catch (err) {
     console.error("Worker error:", err);

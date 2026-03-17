@@ -390,15 +390,14 @@
   }
 
   // -----------------------------------------------------------------------
-  // Analytics — lightweight event tracking
+  // Analytics — GA4 custom events
   // -----------------------------------------------------------------------
 
   function trackEvent(event, data = {}) {
     try {
-      navigator.sendBeacon(
-        "/api/event",
-        JSON.stringify({ event, ...data })
-      );
+      if (typeof gtag === "function") {
+        gtag("event", event, data);
+      }
     } catch {
       // Silent fail — analytics should never break the app
     }
