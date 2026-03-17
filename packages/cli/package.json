@@ -1,0 +1,26 @@
+{
+  "name": "@xtomd/cli",
+  "version": "1.0.0",
+  "description": "CLI tool to convert X/Twitter URLs to Markdown",
+  "type": "module",
+  "bin": {
+    "xtomd": "./bin.js"
+  },
+  "main": "bin.js",
+  "files": [
+    "bin.js"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "xtomd",
+    "cli",
+    "markdown",
+    "twitter",
+    "x",
+    "conversion"
+  ],
+  "author": "xtomd",
+  "license": "MIT"
+}

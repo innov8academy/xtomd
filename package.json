@@ -1,16 +1,39 @@
 {
-  "name": "xarticle-to-md",
+  "name": "xtomd-suite",
   "version": "1.0.0",
-  "description": "Convert X (Twitter) articles to clean Markdown",
+  "description": "Complete integration suite for xtomd.com - convert X/Twitter URLs to Markdown",
+  "private": true,
+  "workspaces": [
+    "packages/mcp-server",
+    "packages/cli",
+    "packages/crewai-tool"
+  ],
   "scripts": {
-    "dev": "npx wrangler pages dev public --port 8788",
-    "deploy": "npx wrangler pages deploy public --project-name xarticle-to-md"
+    "install:all": "npm install && cd packages/mcp-server && npm install && cd ../cli && npm install",
+    "build": "npm run build -w @xtomd/mcp-server && npm run build -w @xtomd/cli",
+    "test": "npm run test -w @xtomd/mcp-server && npm run test -w @xtomd/cli",
+    "publish:npm": "npm publish -w @xtomd/mcp-server && npm publish -w @xtomd/cli",
+    "publish:pypi": "cd packages/python && python -m build && twine upload dist/*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "wrangler": "^4.73.0"
-  }
+  "keywords": [
+    "xtomd",
+    "twitter",
+    "x",
+    "markdown",
+    "conversion",
+    "agent",
+    "mcp",
+    "crewai",
+    "claude"
+  ],
+  "author": "xtomd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtomd/xtomd-agents"
+  },
+  "bugs": {
+    "url": "https://github.com/xtomd/xtomd-agents/issues"
+  },
+  "homepage": "https://xtomd.com"
 }

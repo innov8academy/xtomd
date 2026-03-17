@@ -1,0 +1,30 @@
+{
+  "name": "@xtomd/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for converting X/Twitter URLs to Markdown",
+  "type": "module",
+  "bin": {
+    "xtomd-mcp": "./index.js"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.8.0",
+    "zod": "^3.22.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "xtomd",
+    "mcp",
+    "markdown",
+    "twitter",
+    "x",
+    "conversion"
+  ],
+  "author": "xtomd",
+  "license": "MIT"
+}
