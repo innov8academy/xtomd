@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Best Free Tools to Convert Tweets to Markdown in 2026 | xtomd.com</title>
   <meta name="description" content="We compared 8 tweet-to-markdown tools — web apps, CLI tools, Chrome extensions, and Obsidian plugins. Here's what actually works in 2026.">
-  <meta name="keywords" content="convert tweets to markdown, tweet to markdown tools, twitter to markdown 2026, x to markdown">
+  <meta name="keywords" content="tweet to markdown, x to markdown, twitter to markdown, convert tweets, markdown tools">
   <link rel="canonical" href="https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html">
   <meta property="og:title" content="Best Free Tools to Convert Tweets to Markdown in 2026">
-  <meta property="og:description" content="We compared 8 tweet-to-markdown tools. Here's what actually works in 2026.">
+  <meta property="og:description" content="We compared 8 tweet-to-markdown tools — web apps, CLI tools, Chrome extensions, and Obsidian plugins. Here's what actually works in 2026.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html">
   <meta property="og:site_name" content="xtomd.com">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Best Free Tools to Convert Tweets to Markdown in 2026">
-  <meta name="twitter:description" content="We compared 8 tweet-to-markdown tools. Here's what actually works in 2026.">
+  <meta name="twitter:description" content="We compared 8 tweet-to-markdown tools — web apps, CLI tools, Chrome extensions, and Obsidian plugins.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
   <link rel="stylesheet" href="../style.css">
   <style>
@@ -177,20 +177,42 @@
       font-size: 0.8rem;
       padding-bottom: 1rem;
     }
-    .blog-related {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.825rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
     }
-    .blog-related h2 {
-      margin-top: 0;
+    .step {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
     }
-    .blog-related ul {
-      list-style: none;
-      padding-left: 0;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
     }
-    .blog-related li {
-      margin-bottom: 0.5rem;
+    table th, table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+    table th {
+      background: var(--bg-subtle);
+      font-weight: 700;
+    }
+    table tbody tr:nth-child(even) {
+      background: var(--bg-subtle);
     }
     @media (max-width: 600px) {
       .blog-article h1 { font-size: 1.4rem; }
@@ -221,6 +243,46 @@
     "url": "https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do any of these tools work with Threads (Meta)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. These are all X/Twitter-specific. Threads has its own ecosystem and these tools don't support it yet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which tool handles X Articles best?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "xtomd.com is the only one that explicitly handles X Articles (Draft.js long-form content). Most tools were built for regular 280-character tweets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I batch convert multiple tweets at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CLI tool (tweet-to-markdown) supports batch conversion if you're comfortable with the command line and have API access. Web apps and extensions work one-at-a-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about privacy? Where does my data go?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "xtomd.com processes URLs without logging. Most extensions run locally in your browser. The CLI is local. If you use LLM-powered tools, your content goes to OpenAI or Claude's servers."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="page">
@@ -228,13 +290,13 @@
       <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
       <div class="blog-nav-links">
         <a href="https://xtomd.com">Home</a>
-        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+        <a href="https://xtomd.com/blog/">Blog</a>
       </div>
     </nav>
 
     <article class="blog-article">
       <h1>Best Free Tools to Convert Tweets to Markdown in 2026</h1>
-      <p class="blog-meta">Updated March 2026 &middot; 10 min read</p>
+      <p class="blog-meta">Updated March 2026 &middot; 8 min read</p>
 
       <p>You're building a knowledge base. You find a tweet worth saving. Now what? Copy-paste loses formatting. Screenshots don't scale. You need Markdown.</p>
 
@@ -242,15 +304,105 @@
 
       <p>We tested 8 tools that claim to solve this. Here's what actually works in 2026.</p>
 
+      <h2>Quick Comparison</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Type</th>
+            <th>Free?</th>
+            <th>X Articles?</th>
+            <th>Threads?</th>
+            <th>Install?</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>xtomd.com</strong></td>
+            <td>Web app</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Simplicity, AI users</td>
+          </tr>
+          <tr>
+            <td><strong>tweet-to-markdown CLI</strong></td>
+            <td>Node.js CLI</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Developers</td>
+          </tr>
+          <tr>
+            <td><strong>X Copy Tweet as Markdown</strong></td>
+            <td>Chrome ext</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Quick single captures</td>
+          </tr>
+          <tr>
+            <td><strong>Twitter/X to Markdown</strong></td>
+            <td>Chrome ext</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Thread capture</td>
+          </tr>
+          <tr>
+            <td><strong>Tweet to Markdown (LLM)</strong></td>
+            <td>Chrome ext</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Custom formatting</td>
+          </tr>
+          <tr>
+            <td><strong>Obsidian Tweet to Markdown</strong></td>
+            <td>Obsidian plugin</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Obsidian-only workflows</td>
+          </tr>
+          <tr>
+            <td><strong>Jina Reader</strong></td>
+            <td>Web service</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Non-X content</td>
+          </tr>
+          <tr>
+            <td><strong>ThreadReaderApp</strong></td>
+            <td>Web unroller</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Reading threads</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2>1. xtomd.com</h2>
 
       <p><strong>Type:</strong> Web app | <strong>Cost:</strong> Free | <strong>Install:</strong> None</p>
 
       <p>The simplest option. Paste a tweet URL or X Article URL. Get Markdown. Done.</p>
 
-      <p>No login, no API key, no installation. Works on desktop and mobile. Handles regular tweets, quote tweets, and X Articles (the long-form Draft.js content). The Markdown output is clean — preserves links, mentions, and quoted text structure.</p>
+      <p>No login, no API key, no installation. Works on desktop and mobile. Handles regular tweets, quote tweets, and X Articles (the long-form Draft.js content). The Markdown output is clean—preserves links, mentions, and quoted text structure.</p>
 
-      <p><strong>Strengths:</strong></p>
+      <h3>Strengths</h3>
       <ul>
         <li>Zero friction. Paste URL, copy Markdown.</li>
         <li>Handles X Articles, which most tools don't.</li>
@@ -258,14 +410,16 @@
         <li>Works offline after load.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
         <li>No thread support yet (single tweets only).</li>
         <li>No direct integration with other tools.</li>
         <li>Relies on URL format staying stable.</li>
       </ul>
 
-      <p><strong>Best for:</strong> People who want the fastest path from tweet to Markdown. AI researchers and PKM users who need to quickly import X content into Obsidian or Notion.</p>
+      <p><strong>Best for:</strong> People who want the fastest path from tweet to Markdown. AI researchers and PKM users who need to quickly import X content into Obsidian or Notion. Anyone who doesn't want to touch the command line.</p>
+
+      <p><strong>Cost:</strong> Free</p>
 
       <h2>2. tweet-to-markdown (CLI)</h2>
 
@@ -275,61 +429,80 @@
 
       <p>The catch: you need a Twitter API bearer token. The old API used to be free. Now it's not. You need paid access to the Twitter API ($100+/month minimum), which means the "free" tool has a hidden cost.</p>
 
-      <p><strong>Strengths:</strong></p>
+      <h3>Strengths</h3>
       <ul>
         <li>Handles thread extraction.</li>
-        <li>Scriptable — you can automate bulk conversions.</li>
+        <li>Scriptable—you can automate bulk conversions.</li>
         <li>Full control over output format.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
         <li>Requires paid API access (no free tier).</li>
-        <li>Command-line only — not beginner-friendly.</li>
+        <li>Command-line only—not beginner-friendly.</li>
         <li>Needs Node.js installed and npm knowledge.</li>
+        <li>Maintenance depends on maintainer (Twitter API changes break tools).</li>
       </ul>
 
       <p><strong>Best for:</strong> Developers who already have Twitter API access or bulk automation needs justifying the cost.</p>
 
+      <p><strong>Cost:</strong> Free tool, but ~$100+/month for API access</p>
+
       <h2>3. X Copy Tweet as Markdown</h2>
 
-      <p><strong>Type:</strong> Chrome extension | <strong>Cost:</strong> Free | <strong>Install:</strong> Yes</p>
+      <p><strong>Type:</strong> Chrome extension | <strong>Cost:</strong> Free | <strong>Install:</strong> Yes | <strong>Updated:</strong> February 2026</p>
 
-      <p>Simple browser extension. Open a tweet, click the extension icon, copy the generated Markdown. One-click workflow. It works well for single tweets. The extension is lightweight and handles most tweet types.</p>
+      <p>Simple browser extension. Open a tweet, click the extension icon, copy the generated Markdown. One-click workflow.</p>
 
-      <p><strong>Strengths:</strong></p>
+      <p>It works well for single tweets. The extension is lightweight and handles most tweet types. The maintainer updates it regularly (last update Feb 2026), which is a good sign for compatibility.</p>
+
+      <h3>Strengths</h3>
       <ul>
         <li>One-click capture.</li>
         <li>No login required.</li>
         <li>Regularly maintained.</li>
+        <li>Works directly in your browser.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
         <li>Chrome only (no Firefox version).</li>
         <li>Struggles with X Articles.</li>
-        <li>Single tweets only — no thread support.</li>
+        <li>Single tweets only—no thread support.</li>
+        <li>Depends on page structure (changes break it).</li>
       </ul>
+
+      <p><strong>Best for:</strong> Chrome users who capture individual tweets often and want the fastest possible workflow.</p>
+
+      <p><strong>Cost:</strong> Free</p>
 
       <h2>4. Twitter/X to Markdown</h2>
 
-      <p><strong>Type:</strong> Chrome extension | <strong>Cost:</strong> Free | <strong>Install:</strong> Yes</p>
+      <p><strong>Type:</strong> Chrome extension | <strong>Cost:</strong> Free | <strong>Install:</strong> Yes | <strong>Updated:</strong> February 2026</p>
 
-      <p>Another Chrome extension, but this one focuses on thread capture. It scrapes the conversation and exports to Markdown. The approach reads the DOM instead of calling an API, so it works without API keys.</p>
+      <p>Another Chrome extension, but this one focuses on thread capture. It scrapes the conversation and exports to Markdown. Also recently updated (Feb 2026).</p>
 
-      <p><strong>Strengths:</strong></p>
+      <p>The approach is different—it reads the DOM instead of calling an API, so it works without API keys. That's both good and fragile.</p>
+
+      <h3>Strengths</h3>
       <ul>
-        <li>Thread support — actually captures multi-tweet conversations.</li>
+        <li>Thread support—actually captures multi-tweet conversations.</li>
         <li>No API key needed.</li>
         <li>Free and maintained.</li>
+        <li>Works with conversation threading.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
-        <li>Fragile — relies on X's page structure, which changes often.</li>
+        <li>Fragile—relies on X's page structure, which changes often.</li>
         <li>Chrome only.</li>
+        <li>Inconsistent results depending on thread length.</li>
         <li>Can't handle X Articles.</li>
       </ul>
+
+      <p><strong>Best for:</strong> People who regularly capture Twitter/X threads for long-form reading or research.</p>
+
+      <p><strong>Cost:</strong> Free</p>
 
       <h2>5. Tweet to Markdown (LLM-powered)</h2>
 
@@ -337,19 +510,26 @@
 
       <p>This extension uses AI to reformat tweets. You provide your OpenAI API key, and it reformats content through Claude or GPT. Useful if you want custom formatting or summarization.</p>
 
-      <p><strong>Strengths:</strong></p>
+      <p>The appeal is flexibility—you can customize how Markdown gets generated. The downside is obvious: OpenAI API keys cost money. Even light usage adds up.</p>
+
+      <h3>Strengths</h3>
       <ul>
         <li>Custom formatting via AI.</li>
         <li>Can summarize or reformat on the fly.</li>
         <li>Flexible output.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
         <li>Requires OpenAI API key (costs money per request).</li>
+        <li>Another layer of complexity.</li>
         <li>Overkill for simple conversion.</li>
         <li>API costs stack up with heavy use.</li>
       </ul>
+
+      <p><strong>Best for:</strong> Power users who want AI-powered reformatting and have budgets for API usage.</p>
+
+      <p><strong>Cost:</strong> Free tool, but ~$0.01-0.10+ per conversion depending on OpenAI usage</p>
 
       <h2>6. Obsidian Tweet to Markdown Plugin</h2>
 
@@ -357,38 +537,88 @@
 
       <p>If you use Obsidian, this plugin integrates tweet capture directly into your vault. Paste a tweet URL into Obsidian, run the plugin, get Markdown note.</p>
 
-      <p><strong>Strengths:</strong></p>
+      <p>It's convenient if you're already in Obsidian. But it's also fragile—the plugin had issues since Twitter's API changes in 2023, and maintenance has been spotty.</p>
+
+      <h3>Strengths</h3>
       <ul>
         <li>Seamless if you use Obsidian.</li>
         <li>No browser switching.</li>
         <li>Direct integration with PKM workflow.</li>
       </ul>
 
-      <p><strong>Weaknesses:</strong></p>
+      <h3>Weaknesses</h3>
       <ul>
-        <li>Obsidian-only.</li>
+        <li>Obsidian-only (useless if you use Notion, OneNote, etc.).</li>
         <li>API issues have broken it multiple times.</li>
-        <li>Can't handle X Articles. Single tweets only.</li>
+        <li>Relies on third-party plugin maintenance.</li>
+        <li>Can't handle X Articles.</li>
+        <li>Single tweets only.</li>
       </ul>
+
+      <p><strong>Best for:</strong> Obsidian power users who need native integration.</p>
+
+      <p><strong>Cost:</strong> Free</p>
 
       <h2>7. Jina Reader</h2>
 
       <p><strong>Type:</strong> Web service | <strong>Cost:</strong> Free | <strong>Install:</strong> None | <strong>Format:</strong> <code>r.jina.ai/[URL]</code></p>
 
-      <p>Jina Reader is a generic URL-to-Markdown converter. Paste any URL into <code>r.jina.ai/[your-url]</code>, get clean Markdown. The catch: X blocks server-side fetches. When you try to convert X URLs through Jina Reader, the server can't access the content.</p>
+      <p>Jina Reader is a generic URL-to-Markdown converter. Paste any URL into <code>r.jina.ai/[your-url]</code>, get clean Markdown. Works for most websites.</p>
+
+      <p>The catch: X blocks server-side fetches. When you try to convert X URLs through Jina Reader, the server can't access the content. You get empty or incomplete results. It's great for everything except Twitter/X.</p>
+
+      <h3>Strengths</h3>
+      <ul>
+        <li>Works for non-X content (news sites, blogs, etc.).</li>
+        <li>No install, no login.</li>
+        <li>Fast.</li>
+      </ul>
+
+      <h3>Weaknesses</h3>
+      <ul>
+        <li>X blocks server-side requests—doesn't work for tweets.</li>
+        <li>Not designed for social media.</li>
+        <li>Returns incomplete data for X URLs.</li>
+      </ul>
 
       <p><strong>Best for:</strong> Converting web articles to Markdown, not tweets.</p>
+
+      <p><strong>Cost:</strong> Free</p>
 
       <h2>8. ThreadReaderApp</h2>
 
       <p><strong>Type:</strong> Web-based thread unroller | <strong>Cost:</strong> Free | <strong>Install:</strong> None</p>
 
-      <p>ThreadReaderApp specializes in unrolling threads. You paste a tweet URL, it reconstructs the entire thread in a readable format. It's good at what it does, but what it does doesn't include Markdown output. The exports are PDF or raw text — not formatted Markdown.</p>
+      <p>ThreadReaderApp specializes in unrolling threads. You paste a tweet URL, it reconstructs the entire thread in a readable format. You can export to PDF or plain text.</p>
+
+      <p>It's good at what it does, but what it does doesn't include Markdown output. The exports are PDF or raw text—not formatted Markdown. It's also not X Article-friendly.</p>
+
+      <h3>Strengths</h3>
+      <ul>
+        <li>Thread unrolling is reliable.</li>
+        <li>No install needed.</li>
+        <li>Works well for reading threads.</li>
+      </ul>
+
+      <h3>Weaknesses</h3>
+      <ul>
+        <li>No Markdown output.</li>
+        <li>No X Article support.</li>
+        <li>Output format is PDF or plain text.</li>
+        <li>Designed for reading, not content capture.</li>
+      </ul>
 
       <p><strong>Best for:</strong> Reading long threads in a readable format. Not ideal if you need Markdown for further processing.</p>
 
+      <p><strong>Cost:</strong> Free (plus paid tiers for premium features)</p>
+
       <div class="faq-section">
-        <h2>FAQ</h2>
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>Do any of these tools work with Threads (Meta)?</h3>
+          <p>No. These are all X/Twitter-specific. Threads has its own ecosystem and these tools don't support it yet.</p>
+        </div>
 
         <div class="faq-item">
           <h3>Which tool handles X Articles best?</h3>
@@ -418,28 +648,20 @@
 
       <h2>The Bottom Line</h2>
 
-      <p>If you want the simplest, most reliable option that handles X Articles — use <strong><a href="https://xtomd.com">xtomd.com</a></strong>. No install, no login, no costs. Paste URL, get Markdown.</p>
+      <p>If you want the simplest, most reliable option that handles X Articles—use <strong>xtomd.com</strong>. No install, no login, no costs. Paste URL, get Markdown.</p>
 
       <p>If you need thread support and don't mind Chrome extensions, try <strong>Twitter/X to Markdown</strong>.</p>
 
       <p>If you're a developer and already pay for Twitter API access, the <strong>CLI tool</strong> gives you automation and power.</p>
 
-      <p>The right tool depends on your workflow. But the best tool is the one you'll actually use — and that's usually the simplest one.</p>
+      <p>For everything else, you're probably better off with a simple copy-paste into xtomd.com than wrestling with plugins and API keys.</p>
+
+      <p>The right tool depends on your workflow. But the best tool is the one you'll actually use—and that's usually the simplest one.</p>
 
       <div class="blog-cta">
-        <h3>Simplify Your Tweet-to-Markdown Workflow</h3>
-        <p>Paste a tweet URL, get clean Markdown in seconds. No install, no login.</p>
-        <a href="https://xtomd.com" class="blog-cta-btn">Try xtomd.com Free</a>
-      </div>
-
-      <div class="blog-related">
-        <h2>Related Articles</h2>
-        <ul>
-          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown: Complete Guide</a></li>
-          <li><a href="https://xtomd.com/blog/chatgpt-cant-read-x-articles.html">ChatGPT Can't Read X Articles — Here's the Fix</a></li>
-          <li><a href="https://xtomd.com/blog/archive-x-articles-before-deleted.html">How to Archive X Articles Before They Get Deleted</a></li>
-          <li><a href="https://xtomd.com/blog/x-articles-vs-threads-differences-convert.html">X Articles vs Threads: Differences and How to Convert Both</a></li>
-        </ul>
+        <h3>Ready to simplify your workflow?</h3>
+        <p>Try xtomd.com free — paste a tweet URL, get clean Markdown in seconds.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Try xtomd.com</a>
       </div>
     </article>
 

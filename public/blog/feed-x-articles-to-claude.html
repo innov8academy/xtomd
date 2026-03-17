@@ -227,6 +227,54 @@
     "url": "https://xtomd.com/blog/feed-x-articles-to-claude.html"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does xtomd.com work with all X links?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It works with threads, single tweets with replies, and quote tweets. If the content is public and the author hasn't restricted sharing, the conversion works."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert a whole X profile or search results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. xtomd.com is designed for individual threads and articles. Copy the link to a specific thread, not a profile or search page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the thread has images or videos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "xtomd.com captures the text and metadata. Images and videos are noted as [Image] or [Video] placeholders. Claude can't see them in the Markdown, so focus on threads that are primarily text-based."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I format follow-up questions for Claude?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Just paste the Markdown and ask normally. Claude handles it. If the thread is long, you might want to ask Claude to summarize this thread first, then I'll ask follow-ups. This keeps the conversation focused."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this work with threads that have been deleted or are now private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. xtomd.com needs access to the live article. If it's deleted or private, you're out of luck. This is an X limitation, not an xtomd limitation."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="page">

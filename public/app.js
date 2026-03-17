@@ -11,6 +11,10 @@
   const copyBtn = document.getElementById("copy-btn");
   const downloadBtn = document.getElementById("download-btn");
   const charCount = document.getElementById("char-count");
+  const errorCard = document.getElementById("error-card");
+  const errorTitle = document.getElementById("error-title");
+  const errorMessage = document.getElementById("error-message");
+  const errorExamples = document.getElementById("error-examples");
 
   // -----------------------------------------------------------------------
   // Event Listeners
@@ -23,6 +27,8 @@
   copyBtn.addEventListener("click", handleCopy);
   downloadBtn.addEventListener("click", handleDownload);
 
+  urlInput.addEventListener("input", hideError);
+
   // No auto-convert — user clicks Convert or presses Enter
 
   // -----------------------------------------------------------------------
@@ -31,14 +37,38 @@
 
   async function handleConvert() {
     const url = urlInput.value.trim();
+    hideError();
 
     if (!url) {
-      showStatus("Please paste an X (Twitter) URL", "error");
+      showError(
+        "No URL entered",
+        "Paste an X (Twitter) link into the input field above.",
+        true
+      );
+      urlInput.focus();
+      return;
+    }
+
+    // Check if it's a URL at all
+    let parsed;
+    try { parsed = new URL(url); } catch { parsed = null; }
+
+    if (!parsed) {
+      showError(
+        "That doesn't look like a URL",
+        "Make sure you're pasting a full link starting with https://",
+        true
+      );
       return;
     }
 
     if (!isValidXUrl(url)) {
-      showStatus("Invalid URL. Use a link like https://x.com/user/status/123...", "error");
+      const domain = parsed.hostname;
+      showError(
+        "Not an X (Twitter) link",
+        `You pasted a link from "${domain}". This tool only works with posts from x.com or twitter.com.`,
+        true
+      );
       return;
     }
 
@@ -56,7 +86,11 @@
       const data = await resp.json();
 
       if (!resp.ok) {
-        showStatus(data.error || "Failed to fetch content", "error");
+        showError(
+          "Could not fetch this post",
+          data.error || "The post may be private, deleted, or temporarily unavailable. Double-check the URL and try again.",
+          false
+        );
         return;
       }
 
@@ -65,12 +99,20 @@
         markdown = convertToMarkdown(data);
       } catch (convErr) {
         console.error("Markdown conversion error:", convErr);
-        showStatus("Conversion error: " + convErr.message, "error");
+        showError(
+          "Conversion failed",
+          "The content was fetched but couldn't be converted to Markdown. This post format may not be supported yet.",
+          false
+        );
         return;
       }
 
       if (!markdown || markdown.trim().length < 10) {
-        showStatus("Could not extract meaningful content. The post may require login or be unsupported.", "error");
+        showError(
+          "No content found",
+          "The post exists but has no extractable text. It may require login, or be a format we don't support yet (e.g., Spaces, polls).",
+          false
+        );
         return;
       }
 
@@ -85,7 +127,11 @@
       );
     } catch (err) {
       console.error("Conversion error:", err);
-      showStatus("Network error. Could not reach the server.", "error");
+      showError(
+        "Network error",
+        "Could not reach the server. Check your internet connection and try again.",
+        false
+      );
     } finally {
       setLoading(false);
     }
@@ -371,7 +417,20 @@
     return String(n);
   }
 
+  function showError(title, message, showFormats) {
+    errorTitle.textContent = title;
+    errorMessage.textContent = message;
+    errorExamples.hidden = !showFormats;
+    errorCard.hidden = false;
+    statusEl.hidden = true;
+  }
+
+  function hideError() {
+    errorCard.hidden = true;
+  }
+
   function showStatus(message, type) {
+    hideError();
     statusText.textContent = message;
     statusEl.className = `status ${type}`;
     statusEl.hidden = false;

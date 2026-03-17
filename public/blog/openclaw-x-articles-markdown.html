@@ -221,6 +221,46 @@
     "url": "https://xtomd.com/blog/openclaw-x-articles-markdown.html"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does xtomd.com work with regular tweets too, not just articles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Paste any public X URL — articles, regular tweets, quote tweets. You'll get the content as clean Markdown with metadata (author, date, engagement stats)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is xtomd.com free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Completely free. No login, no account, no usage limits. The tool runs on Cloudflare's free tier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I automate this with OpenClaw?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can build an OpenClaw skill that calls xtomd.com's API endpoint, converts the response to Markdown, and pipes it into your analysis workflow. The endpoint is POST /api/fetch with the X URL as the body."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the X article gets deleted later?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Once you've converted it to Markdown and saved the .md file, you have a permanent copy. The content is yours regardless of what happens on X."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="page">

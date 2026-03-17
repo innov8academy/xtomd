@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Twitter to Notion: The Complete 2026 Guide | xtomd.com</title>
   <meta name="description" content="Save X articles to Notion without formatting loss. Convert to clean Markdown with xtomd.com first, then paste into Notion.">
-  <meta name="keywords" content="twitter to notion, x to notion, save tweets to notion, x articles notion 2026">
+  <meta name="keywords" content="twitter to notion, x to notion, save twitter to notion, markdown to notion">
   <link rel="canonical" href="https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html">
   <meta property="og:title" content="Twitter to Notion: The Complete 2026 Guide">
-  <meta property="og:description" content="Save X articles to Notion without formatting loss. Convert to clean Markdown with xtomd.com first.">
+  <meta property="og:description" content="Save X articles to Notion without formatting loss. Convert to clean Markdown with xtomd.com first, then paste into Notion.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html">
   <meta property="og:site_name" content="xtomd.com">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Twitter to Notion: The Complete 2026 Guide">
-  <meta name="twitter:description" content="Save X articles to Notion without formatting loss. Convert to Markdown first.">
+  <meta name="twitter:description" content="Save X articles to Notion without formatting loss. Convert to clean Markdown with xtomd.com first, then paste into Notion.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
   <link rel="stylesheet" href="../style.css">
   <style>
@@ -177,20 +177,24 @@
       font-size: 0.8rem;
       padding-bottom: 1rem;
     }
-    .blog-related {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.825rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
     }
-    .blog-related h2 {
-      margin-top: 0;
-    }
-    .blog-related ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .blog-related li {
-      margin-bottom: 0.5rem;
+    .step {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
     }
     @media (max-width: 600px) {
       .blog-article h1 { font-size: 1.4rem; }
@@ -221,6 +225,46 @@
     "url": "https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does xtomd.com work with private X accounts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. xtomd.com needs to read the public page. Private accounts won't work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the X post gets deleted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your Markdown copy in Notion remains. The \"Source URL\" property might link to a dead page, but your text is safe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I automate this process?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not directly with xtomd.com alone, but you can add Zapier or Make as a middle layer if you need recurring conversions. That said, manual conversion takes 2 minutes—automation might be overthinking it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a Notion account or subscription?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Notion's free plan works fine for this. Paid plans give you more collaborators and API access, but aren't necessary."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="page">
@@ -228,15 +272,15 @@
       <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
       <div class="blog-nav-links">
         <a href="https://xtomd.com">Home</a>
-        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+        <a href="https://xtomd.com/blog/">Blog</a>
       </div>
     </nav>
 
     <article class="blog-article">
       <h1>Twitter to Notion: The Complete 2026 Guide</h1>
-      <p class="blog-meta">Updated March 2026 &middot; 7 min read</p>
+      <p class="blog-meta">Updated March 2026 &middot; 6 min read</p>
 
-      <p>Notion handles Markdown natively. X articles are locked behind JavaScript rendering. <a href="https://xtomd.com">xtomd.com</a> bridges the gap — and it's free.</p>
+      <p>Notion handles Markdown natively. X articles are locked behind JavaScript rendering. xtomd.com bridges the gap—and it's free.</p>
 
       <p>If you've ever tried copying an X article into Notion, you know what happens: half the formatting breaks, threads get mangled, links disappear. The Notion Web Clipper doesn't work well on X either. It grabs the UI chrome instead of the actual content. Third-party integrations cost money and add unnecessary complexity.</p>
 
@@ -257,30 +301,59 @@
 
       <h2>What's broken about the alternatives?</h2>
 
-      <p><strong>Notion Web Clipper on X:</strong> It captures the whole page layout. You get the sidebar, the navbar, sometimes ads — everything except clean article text. Useless for long-form X Articles.</p>
+      <p><strong>Notion Web Clipper on X:</strong> It captures the whole page layout. You get the Notion sidebar, the sidebar, the navbar, sometimes ads—everything except clean article text. Useless for long-form X Articles.</p>
 
       <p><strong>Copy-paste directly:</strong> Loses links, bullets collapse, code blocks break, timestamps vanish. You spend 10 minutes fixing formatting for content that should take 2 minutes to capture.</p>
 
-      <p><strong>Third-party Notion integrations:</strong> IFTTT, Zapier, Make — they work, but they're subscription-based, introduce another service to manage, and often add latency. Overkill for something that should be instant.</p>
+      <p><strong>Third-party Notion integrations:</strong> IFTTT, Zapier, Make—they work, but they're subscription-based, introduce another service to manage, and often add latency. Overkill for something that should be instant.</p>
 
       <p><strong>xtomd approach:</strong> Markdown is text. Notion loves Markdown. No middleman, no fees, no delays.</p>
+
+      <h2>How xtomd.com solves this</h2>
+
+      <p>xtomd.com converts X content (tweets, threads, articles) into clean, readable Markdown. The output respects links, preserves author info, maintains structure, and pastes perfectly into Notion. It's a one-time conversion—no login, no API key, no account required.</p>
+
+      <p>You get:</p>
+
+      <ul>
+        <li>Full article text without the UI</li>
+        <li>Links preserved as clickable Markdown</li>
+        <li>Author, timestamp, and URL metadata</li>
+        <li>Thread conversations properly formatted</li>
+        <li>Code blocks, lists, and formatting intact</li>
+      </ul>
 
       <h2>Step-by-step: Convert X to Notion in 5 minutes</h2>
 
       <h3>Step 1: Find your X article or tweet</h3>
-      <p>Navigate to the X (formerly Twitter) post or article you want to save. You need the URL. For a long-form X Article: click into the article, grab the URL from your browser's address bar.</p>
+
+      <p>Navigate to the X (formerly Twitter) post or article you want to save. You need the URL.</p>
+
+      <p>For a long-form X Article: Click into the article, grab the URL from your browser's address bar. It looks like <code>x.com/username/status/1234567890</code>.</p>
+
+      <p>For a thread: Use the URL of the first tweet in the thread.</p>
 
       <h3>Step 2: Go to xtomd.com and paste the link</h3>
-      <p>Open <a href="https://xtomd.com">xtomd.com</a> in your browser. Paste your link into the input field.</p>
+
+      <p>Open xtomd.com in your browser. You'll see a simple input field labeled "X URL" or "Tweet Link." Paste your link there.</p>
+
+      <p>Leave the settings at defaults unless you want to customize (most people don't need to).</p>
 
       <h3>Step 3: Hit convert and copy the Markdown</h3>
-      <p>Click the Convert button. xtomd.com processes the page and generates clean Markdown output. Select all the Markdown text and copy it to your clipboard.</p>
+
+      <p>Click the Convert button. xtomd.com processes the page and generates clean Markdown output. The converted text appears in a text box on the right side of the screen.</p>
+
+      <p>Select all the Markdown text (Ctrl+A or Cmd+A) and copy it to your clipboard.</p>
 
       <h3>Step 4: Open your Notion database and create a new page</h3>
-      <p>In Notion, open the database where you want to store this content. Click the "+ New" button to add a page. Give it a title that matches the X article headline or tweet subject.</p>
+
+      <p>In Notion, open the database where you want to store this content. Click the "+ New" button or the "+" icon to add a page.</p>
+
+      <p>Give it a title that matches the X article headline or tweet subject.</p>
 
       <h3>Step 5: Paste the Markdown and format</h3>
-      <p>Click into the page body and paste. Notion automatically renders the Markdown — links become clickable, lists become bullet points, code blocks appear as formatted code.</p>
+
+      <p>Click into the page body and paste. Notion automatically renders the Markdown—links become clickable, lists become bullet points, code blocks appear as formatted code.</p>
 
       <p><strong>Pro formatting tip:</strong> Create a database template with properties for:</p>
 
@@ -292,19 +365,25 @@
         <li><strong>Status:</strong> "To Read," "Reading," "Done"</li>
       </ul>
 
+      <p>Add these properties to your Notion page after pasting. Takes 30 seconds and makes your database queryable, sortable, and actually useful later.</p>
+
       <h2>Building a reading system in Notion</h2>
 
       <p>Just pasting articles into Notion isn't enough. Make it a system:</p>
 
       <p><strong>Create a database view</strong> filtered to show only "To Read" status items. Check this before opening Twitter in the morning.</p>
 
-      <p><strong>Add a "Date Saved" property</strong> so you can track how old an article has been sitting unread.</p>
+      <p><strong>Add a "Date Saved" property</strong> so you can track how old an article has been sitting unread. (Guilt is motivating.)</p>
 
       <p><strong>Tag by source:</strong> "Direct Tweet," "Thread," "Article," "Retweet." Later you can filter by what content type taught you the most.</p>
 
       <p><strong>Use Notion relations</strong> if you're storing this alongside other databases. Link reading list items to projects, people, or concepts.</p>
 
-      <p>Once you have 50+ articles organized this way, searching Notion becomes faster than searching X. Your knowledge is portable, sortable, and owned by you — not X's algorithm.</p>
+      <p>Once you have 50+ articles organized this way, searching Notion becomes faster than searching X. Your knowledge is portable, sortable, and owned by you—not X's algorithm.</p>
+
+      <h2>This works for regular tweets too</h2>
+
+      <p>You don't need long-form X Articles. A single tweet with good information converts just fine. A thread of 5 tweets? Even better. Convert, paste, tag, done.</p>
 
       <h2>Bonus: Run Notion AI on the content</h2>
 
@@ -320,7 +399,7 @@
       <p>Your X content just became searchable, analyzable, and integrated with everything else in Notion.</p>
 
       <div class="faq-section">
-        <h2>FAQ</h2>
+        <h2>Frequently Asked Questions</h2>
 
         <div class="faq-item">
           <h3>Does xtomd.com work with private X accounts?</h3>
@@ -334,7 +413,7 @@
 
         <div class="faq-item">
           <h3>Can I automate this process?</h3>
-          <p>Not directly with xtomd.com alone, but you can add Zapier or Make as a middle layer if you need recurring conversions. That said, manual conversion takes 2 minutes — automation might be overthinking it.</p>
+          <p>Not directly with xtomd.com alone, but you can add Zapier or Make as a middle layer if you need recurring conversions. That said, manual conversion takes 2 minutes—automation might be overthinking it.</p>
         </div>
 
         <div class="faq-item">
@@ -348,20 +427,14 @@
         </div>
       </div>
 
-      <div class="blog-cta">
-        <h3>Save X Articles to Notion Now</h3>
-        <p>Paste any X article URL and get clean Markdown to paste into Notion.</p>
-        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
-      </div>
+      <h2>Your next move</h2>
 
-      <div class="blog-related">
-        <h2>Related Articles</h2>
-        <ul>
-          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
-          <li><a href="https://xtomd.com/blog/archive-x-articles-before-deleted.html">How to Archive X Articles Before They Get Deleted</a></li>
-          <li><a href="https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html">Best Free Tools to Convert Tweets to Markdown in 2026</a></li>
-          <li><a href="https://xtomd.com/blog/why-markdown-best-format-ai-analysis.html">Why Markdown is the Best Format for AI Analysis</a></li>
-        </ul>
+      <p>You've got a system now. Start converting. Save 3 X articles today and build the habit. Your future self will thank you when you need that reference 6 months from now and actually find it.</p>
+
+      <div class="blog-cta">
+        <h3>Ready to try it?</h3>
+        <p>Open xtomd.com, paste your X article URL, and get clean Markdown to paste into Notion.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
       </div>
     </article>
 

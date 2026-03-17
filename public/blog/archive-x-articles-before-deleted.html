@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>How to Archive X Articles Before They Get Deleted | xtomd.com</title>
   <meta name="description" content="X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally for permanent access.">
-  <meta name="keywords" content="archive x articles, save x articles, x article deleted, twitter article archive, preserve x content">
+  <meta name="keywords" content="archive x articles, save twitter articles, preserve x content, markdown archive">
   <link rel="canonical" href="https://xtomd.com/blog/archive-x-articles-before-deleted.html">
   <meta property="og:title" content="How to Archive X Articles Before They Get Deleted">
   <meta property="og:description" content="X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally for permanent access.">
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="xtomd.com">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How to Archive X Articles Before They Get Deleted">
-  <meta name="twitter:description" content="X content disappears without warning. Convert to Markdown and store locally.">
+  <meta name="twitter:description" content="X content disappears without warning. Convert articles to Markdown with xtomd.com and store them locally.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
   <link rel="stylesheet" href="../style.css">
   <style>
@@ -177,20 +177,24 @@
       font-size: 0.8rem;
       padding-bottom: 1rem;
     }
-    .blog-related {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.825rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
     }
-    .blog-related h2 {
-      margin-top: 0;
-    }
-    .blog-related ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .blog-related li {
-      margin-bottom: 0.5rem;
+    .step {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
     }
     @media (max-width: 600px) {
       .blog-article h1 { font-size: 1.4rem; }
@@ -221,6 +225,46 @@
     "url": "https://xtomd.com/blog/archive-x-articles-before-deleted.html"
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I archive X articles if the account is already suspended?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not through xtomd. If the article is gone, it's gone. But if you have the URL in your browser history or a web archive, xtomd might still work. Use Wayback Machine first to check if the article was already archived by Internet Archive."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will the images in my Markdown file display offline?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Images are stored as URLs, not embedded files. They'll display if you have internet access, but not offline. If you need full offline access, you'll need to manually download images and adjust the URLs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I automate this process?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "xtomd itself is manual, but you can combine it with your note-taking workflow. Use browser extensions to capture X content, then convert to Markdown. Or build a simple script if you're comfortable with code."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much storage do I need for an X article archive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Markdown files are tiny. Most articles are 20-50 KB. You could store thousands of archived articles in less than 1 GB. Storage isn't your constraint. Consistency and organization are."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="page">
@@ -228,7 +272,7 @@
       <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
       <div class="blog-nav-links">
         <a href="https://xtomd.com">Home</a>
-        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+        <a href="https://xtomd.com/blog/">Blog</a>
       </div>
     </nav>
 
@@ -236,7 +280,7 @@
       <h1>How to Archive X Articles Before They Get Deleted</h1>
       <p class="blog-meta">Updated March 2026 &middot; 7 min read</p>
 
-      <p>X content disappears all the time. Accounts get suspended, posts get deleted, articles vanish without warning. If you didn't save it, it's gone forever. This isn't paranoia — it's a documented reality on a platform where your saved content depends entirely on someone else's account staying active and in good standing.</p>
+      <p>X content disappears all the time. Accounts get suspended, posts get deleted, articles vanish without warning. If you didn't save it, it's gone forever. This isn't paranoia—it's a documented reality on a platform where your saved content depends entirely on someone else's account staying active and in good standing.</p>
 
       <p>The good news? You can preserve X articles permanently by converting them to Markdown files and storing them locally. Here's how.</p>
 
@@ -256,9 +300,11 @@
 
       <h2>Why bookmarks aren't enough</h2>
 
-      <p>Your browser bookmarks are just references — pointers to URLs. They don't store the actual content. They don't preserve the article text, formatting, images, or publication date. They save a link and a title. Nothing more.</p>
+      <p>Your browser bookmarks are just references—pointers to URLs. They don't store the actual content. They don't preserve the article text, formatting, images, or publication date. They save a link and a title. Nothing more.</p>
 
-      <p>When an X article gets deleted, your bookmark becomes a ghost. It still exists in your bookmarks folder, but clicking it leads nowhere. You have the reference but not the content.</p>
+      <p>When an X article gets deleted, your bookmark becomes a ghost. It still exists in your bookmarks folder, but clicking it leads nowhere. You have the reference but not the content. You remember the article mattered, but you can't prove what it said or share it with anyone.</p>
+
+      <p>This is the fatal flaw of relying on platform bookmarks, browser history, or any link-based system. You're betting on permanent URLs. The internet doesn't work that way.</p>
 
       <p>Archiving as Markdown solves this completely. Your content is stored as a static file on your device. No platform, no API, no account suspension can touch it.</p>
 
@@ -272,17 +318,13 @@
 
       <h2>Step-by-step: Archive your first X article with xtomd.com</h2>
 
-      <h3>Step 1: Copy the X article URL</h3>
-      <p>Navigate to the X article you want to save. Copy the full URL from your browser's address bar. It should look something like: <code>x.com/username/status/1234567890</code></p>
+      <div class="step"><span class="step-number">1</span><p><strong>Copy the X article URL</strong><br>Navigate to the X article you want to save. Copy the full URL from your browser's address bar. It should look something like: <code>x.com/username/status/1234567890</code></p></div>
 
-      <h3>Step 2: Go to xtomd.com</h3>
-      <p>Open <a href="https://xtomd.com">xtomd.com</a> in your browser. You'll see a simple input field. Paste the X article URL into it.</p>
+      <div class="step"><span class="step-number">2</span><p><strong>Go to xtomd.com</strong><br>Open xtomd.com in your browser. You'll see a simple input field. Paste the X article URL into it.</p></div>
 
-      <h3>Step 3: Convert to Markdown</h3>
-      <p>Click the convert button. xtomd processes the article and generates a clean Markdown version. This typically takes a few seconds.</p>
+      <div class="step"><span class="step-number">3</span><p><strong>Convert to Markdown</strong><br>Click the convert button. xtomd processes the article and generates a clean Markdown version. This typically takes a few seconds.</p></div>
 
-      <h3>Step 4: Download and save</h3>
-      <p>Download the <code>.md</code> file to your computer. Name it something meaningful — include the author, date, or topic so you can find it later. Save it to a dedicated folder on your device or sync it to cloud storage.</p>
+      <div class="step"><span class="step-number">4</span><p><strong>Download and save</strong><br>Download the <code>.md</code> file to your computer. Name it something meaningful—include the author, date, or topic so you can find it later. Save it to a dedicated folder on your device or sync it to cloud storage.</p></div>
 
       <p>That's it. You now have a permanent copy of that article.</p>
 
@@ -300,11 +342,13 @@
         <li><strong>Thread structure</strong> if it's a multi-tweet article, preserved in order</li>
       </ul>
 
+      <p>The resulting file is clean, readable, and self-contained. Open it in any text editor and you can read the entire article offline.</p>
+
       <h2>Where to store your X article archive</h2>
 
       <p>Don't just download and forget. Set up a system:</p>
 
-      <p><strong>Local folder on your computer:</strong> Create a dedicated directory organized by topic, author, or date. Simple and full control.</p>
+      <p><strong>Local folder on your computer:</strong> Create a dedicated directory like <code>/Documents/X-Articles-Archive/</code> organized by topic, author, or date. Simple and full control.</p>
 
       <p><strong>Obsidian vault:</strong> Use xtomd files as raw material for your knowledge management system. Tag them, link them, integrate them with your notes.</p>
 
@@ -320,52 +364,57 @@
 
       <p>Random archiving creates a mess. Build a habit instead:</p>
 
-      <p><strong>Weekly sweep:</strong> Every Sunday, archive the 3-5 X articles from the past week that stuck with you. Takes fifteen minutes. Done.</p>
+      <p><strong>Weekly sweep:</strong> Every Sunday, archive the 3-5 X articles from the past week that stuck with you. Took you fifteen minutes. Done.</p>
 
       <p><strong>Tag as you save:</strong> Use consistent naming conventions. Include the author's name and topic. <code>author-topic-date.md</code> works well.</p>
 
       <p><strong>Review quarterly:</strong> Every three months, browse your archive. You'll rediscover forgotten insights and spot gaps in what you're saving.</p>
 
+      <p><strong>Share selectively:</strong> If you archive something brilliant, consider sharing the Markdown version with your audience or team. It's easily portable.</p>
+
       <p><strong>Combine with note-taking:</strong> Don't just download and abandon. Read the article, highlight key points, add your thoughts in the Markdown file. Your archive becomes a learning tool, not just a graveyard.</p>
 
+      <p>The system only works if you use it. Start small. Archive one article. See how it feels. Build from there.</p>
+
       <div class="faq-section">
-        <h2>FAQ</h2>
+        <h2>Frequently Asked Questions</h2>
 
         <div class="faq-item">
           <h3>Can I archive X articles if the account is already suspended?</h3>
-          <p>Not through xtomd. If the article is gone, it's gone. But if you have the URL in your browser history or a web archive, try the Wayback Machine first to check if Internet Archive saved it.</p>
+          <p>Not through xtomd. If the article is gone, it's gone. But if you have the URL in your browser history or a web archive, xtomd might still work. Use Wayback Machine first to check if the article was already archived by Internet Archive, then try the archived URL with xtomd.</p>
         </div>
 
         <div class="faq-item">
           <h3>Will the images in my Markdown file display offline?</h3>
-          <p>No. Images are stored as URLs, not embedded files. They'll display if you have internet access, but not offline. If you need full offline access, manually download images and adjust the URLs in your .md file.</p>
+          <p>No. Images are stored as URLs, not embedded files. They'll display if you have internet access, but not offline. If you need full offline access, you'll need to manually download images and adjust the URLs in your <code>.md</code> file.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I automate this process?</h3>
+          <p>xtomd itself is manual, but you can combine it with your note-taking workflow. Use browser extensions to capture X content, then convert to Markdown. Or build a simple script if you're comfortable with code.</p>
         </div>
 
         <div class="faq-item">
           <h3>How much storage do I need for an X article archive?</h3>
-          <p>Markdown files are tiny. Most articles are 20-50 KB. You could store thousands of archived articles in less than 1 GB.</p>
+          <p>Markdown files are tiny. Most articles are 20-50 KB. You could store thousands of archived articles in less than 1 GB. Storage isn't your constraint. Consistency and organization are.</p>
         </div>
 
         <div class="faq-item">
           <h3>What if xtomd.com goes down?</h3>
-          <p>Your .md files are safe. They're stored on your device or cloud storage, not on xtomd's servers. The tool only matters for the initial conversion.</p>
+          <p>Your <code>.md</code> files are safe. They're stored on your device or cloud storage, not on xtomd's servers. The tool only matters for the initial conversion. Once you have the file, you own it completely.</p>
         </div>
       </div>
 
-      <div class="blog-cta">
-        <h3>Start Archiving X Articles Now</h3>
-        <p>Paste any X article URL and download the Markdown file to keep forever.</p>
-        <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
-      </div>
+      <h2>Your next move</h2>
 
-      <div class="blog-related">
-        <h2>Related Articles</h2>
-        <ul>
-          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
-          <li><a href="https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html">Twitter to Notion: The Complete 2026 Guide</a></li>
-          <li><a href="https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html">Best Free Tools to Convert Tweets to Markdown in 2026</a></li>
-          <li><a href="https://xtomd.com/blog/x-articles-vs-threads-differences-convert.html">X Articles vs Threads: Differences and How to Convert Both</a></li>
-        </ul>
+      <p>X content is temporary. Everything else being equal, that doesn't have to be your problem. Convert what matters, store it locally, and stop losing access to the ideas that stick with you.</p>
+
+      <p>Start with one article today. See how simple it is. Then build the habit.</p>
+
+      <div class="blog-cta">
+        <h3>Ready to start archiving?</h3>
+        <p>Open xtomd.com, paste your X article URL, and download the Markdown file to keep forever.</p>
+        <a href="https://xtomd.com" class="blog-cta-btn">Start Archiving Now</a>
       </div>
     </article>
 

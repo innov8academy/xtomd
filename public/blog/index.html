@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blog — X to Markdown Guides, AI Workflows & SEO Tips | xtomd.com</title>
+  <meta name="description" content="Guides on converting X articles to Markdown for AI analysis, Obsidian, Notion, and more. Tips for Claude, ChatGPT, OpenClaw, and PKM workflows.">
+  <meta name="keywords" content="x to markdown, convert x articles, twitter to markdown, ai workflows, obsidian, notion, claude, chatgpt">
+  <link rel="canonical" href="https://xtomd.com/blog/">
+  <meta property="og:title" content="Blog — X to Markdown Guides, AI Workflows & SEO Tips">
+  <meta property="og:description" content="Guides on converting X articles to Markdown for AI analysis, Obsidian, Notion, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xtomd.com/blog/">
+  <meta property="og:site_name" content="xtomd.com">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Blog — X to Markdown Guides, AI Workflows & SEO Tips">
+  <meta name="twitter:description" content="Guides on converting X articles to Markdown for AI analysis, knowledge management, and developer workflows.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-nav-logo {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .blog-nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .blog-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .blog-nav-links a:hover {
+      color: var(--text);
+    }
+    .blog-index-header {
+      margin-bottom: 3rem;
+    }
+    .blog-index-header h1 {
+      font-size: 2rem;
+      text-align: left;
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+    .blog-index-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .blog-section {
+      margin-bottom: 3rem;
+    }
+    .blog-section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--accent-soft);
+    }
+    .blog-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+    .blog-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .blog-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+    .blog-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+    .blog-card-link:hover {
+      gap: 0.5rem;
+    }
+    .blog-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      padding-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .blog-cards {
+        grid-template-columns: 1fr;
+      }
+      .blog-index-header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://xtomd.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://xtomd.com/blog/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Blog",
+    "url": "https://xtomd.com/blog/",
+    "potentialAction": {
+      "@type": "ReadAction"
+    },
+    "mainEntity": [
+      {
+        "@type": "Article",
+        "headline": "How to Convert X Articles to Markdown (2026 Guide)",
+        "url": "https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Feed X Articles to Claude — Complete 2026 Guide",
+        "url": "https://xtomd.com/blog/feed-x-articles-to-claude.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "ChatGPT Can't Read X Articles: Here's Why",
+        "url": "https://xtomd.com/blog/chatgpt-cant-read-x-articles.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "OpenClaw: Convert X Articles to Markdown",
+        "url": "https://xtomd.com/blog/openclaw-x-articles-markdown.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Twitter to Notion: Complete Guide 2026",
+        "url": "https://xtomd.com/blog/twitter-to-notion-complete-guide-2026.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "X Articles to Obsidian: Complete Guide",
+        "url": "https://xtomd.com/blog/x-articles-to-obsidian-complete-guide.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Archive X Articles Before They're Deleted",
+        "url": "https://xtomd.com/blog/archive-x-articles-before-deleted.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "AI Research Pipeline: Using X Content",
+        "url": "https://xtomd.com/blog/ai-research-pipeline-x-content.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "AI Agent Workflows with X Content",
+        "url": "https://xtomd.com/blog/ai-agent-workflows-x-content.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Why Markdown is the Best Format for AI Analysis",
+        "url": "https://xtomd.com/blog/why-markdown-best-format-ai-analysis.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Best Free Tools to Convert Tweets to Markdown (2026)",
+        "url": "https://xtomd.com/blog/best-free-tools-convert-tweets-markdown-2026.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "Best Ways to Save Twitter Threads for AI Analysis",
+        "url": "https://xtomd.com/blog/best-ways-to-save-twitter-threads-for-ai-analysis.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "X Articles vs Threads: Differences & How to Convert",
+        "url": "https://xtomd.com/blog/x-articles-vs-threads-differences-convert.html"
+      },
+      {
+        "@type": "Article",
+        "headline": "AI Agent Workflows with X Content",
+        "url": "https://xtomd.com/blog/ai-agent-workflows-x-content.html"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <nav class="blog-nav">
+      <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
+      <div class="blog-nav-links">
+        <a href="https://xtomd.com">Home</a>
+        <a href="https://xtomd.com/blog/">Blog</a>
+      </div>
+    </nav>
+
+    <header class="blog-index-header">
+      <h1>xtomd.com Blog</h1>
+      <p class="blog-index-subtitle">Guides for converting X content to Markdown — for AI analysis, knowledge management, and developer workflows.</p>
+    </header>
+
+    <main>
+      <!-- Getting Started Section -->
+      <section class="blog-section">
+        <h2 class="blog-section-title">Getting Started</h2>
+        <div class="blog-cards">
+          <a href="how-to-convert-x-articles-to-markdown.html" class="blog-card">
+            <h2>How to Convert X Articles to Markdown</h2>
+            <p>Step-by-step guide to converting X articles and threads to clean Markdown for AI tools, Obsidian, Notion, and more.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="feed-x-articles-to-claude.html" class="blog-card">
+            <h2>Feed X Articles to Claude</h2>
+            <p>Complete 2026 guide to using xtomd.com with Claude for research, analysis, and content workflows.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="chatgpt-cant-read-x-articles.html" class="blog-card">
+            <h2>ChatGPT Can't Read X Articles: Here's Why</h2>
+            <p>Understand the limitations of pasting X content directly into ChatGPT and the solution to get better results.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Use Cases Section -->
+      <section class="blog-section">
+        <h2 class="blog-section-title">Use Cases</h2>
+        <div class="blog-cards">
+          <a href="openclaw-x-articles-markdown.html" class="blog-card">
+            <h2>OpenClaw: Convert X Articles to Markdown</h2>
+            <p>Integration guide for using OpenClaw with xtomd.com to automate X article conversion.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="twitter-to-notion-complete-guide-2026.html" class="blog-card">
+            <h2>Twitter to Notion: Complete Guide 2026</h2>
+            <p>How to convert X articles to Markdown and save them to Notion with proper formatting and organization.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="x-articles-to-obsidian-complete-guide.html" class="blog-card">
+            <h2>X Articles to Obsidian: Complete Guide</h2>
+            <p>Full workflow for converting X content to Markdown and integrating with your Obsidian vault for PKM.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="archive-x-articles-before-deleted.html" class="blog-card">
+            <h2>Archive X Articles Before They're Deleted</h2>
+            <p>Preserve important X articles in Markdown format before they're removed from the platform.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- AI Workflows Section -->
+      <section class="blog-section">
+        <h2 class="blog-section-title">AI Workflows</h2>
+        <div class="blog-cards">
+          <a href="ai-research-pipeline-x-content.html" class="blog-card">
+            <h2>AI Research Pipeline: Using X Content</h2>
+            <p>Build a research workflow using X articles, Markdown conversion, and AI models for knowledge synthesis.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="ai-agent-workflows-x-content.html" class="blog-card">
+            <h2>AI Agent Workflows with X Content</h2>
+            <p>Leverage X articles in autonomous AI agent workflows for content curation, analysis, and generation.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="why-markdown-best-format-ai-analysis.html" class="blog-card">
+            <h2>Why Markdown is the Best Format for AI Analysis</h2>
+            <p>Explore why Markdown structure improves AI model understanding and output quality for document analysis.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Comparisons & Guides Section -->
+      <section class="blog-section">
+        <h2 class="blog-section-title">Comparisons & Guides</h2>
+        <div class="blog-cards">
+          <a href="best-free-tools-convert-tweets-markdown-2026.html" class="blog-card">
+            <h2>Best Free Tools to Convert Tweets to Markdown (2026)</h2>
+            <p>Comprehensive comparison of free tools for converting tweets and threads to Markdown, including xtomd.com.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="best-ways-to-save-twitter-threads-for-ai-analysis.html" class="blog-card">
+            <h2>Best Ways to Save Twitter Threads for AI Analysis</h2>
+            <p>Multiple strategies for capturing and converting Twitter threads into formats suitable for AI processing.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+          <a href="x-articles-vs-threads-differences-convert.html" class="blog-card">
+            <h2>X Articles vs Threads: Differences & How to Convert</h2>
+            <p>Understand the differences between X articles and threads, and how to convert each format properly.</p>
+            <span class="blog-card-link">Read more →</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="blog-footer">
+      <p>&copy; 2026 xtomd.com. Free and open source. Built for the AI and PKM community.</p>
+    </footer>
+  </div>
+</body>
+</html>

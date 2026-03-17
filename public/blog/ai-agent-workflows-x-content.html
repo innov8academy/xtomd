@@ -5,210 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>How AI Agents Can Use X Content with xtomd.com | xtomd.com</title>
   <meta name="description" content="AI agents like CrewAI, AutoGPT, and OpenClaw can't scrape X directly. Use xtomd.com as a preprocessing step to convert X content to agent-readable Markdown.">
-  <meta name="keywords" content="ai agent x content, crewai x, autogpt x, openclaw x content, ai agent markdown workflow">
+  <meta name="keywords" content="AI agents, CrewAI, AutoGPT, X content, markdown, API">
   <link rel="canonical" href="https://xtomd.com/blog/ai-agent-workflows-x-content.html">
   <meta property="og:title" content="How AI Agents Can Use X Content with xtomd.com">
-  <meta property="og:description" content="AI agents like CrewAI, AutoGPT, and OpenClaw can't scrape X directly. Use xtomd.com as a preprocessing step.">
+  <meta property="og:description" content="AI agents like CrewAI, AutoGPT, and OpenClaw can't scrape X directly. Use xtomd.com as a preprocessing step to convert X content to agent-readable Markdown.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://xtomd.com/blog/ai-agent-workflows-x-content.html">
   <meta property="og:site_name" content="xtomd.com">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How AI Agents Can Use X Content with xtomd.com">
-  <meta name="twitter:description" content="AI agents can't scrape X directly. Use xtomd.com to convert X content to Markdown.">
+  <meta name="twitter:description" content="AI agents can't scrape X directly. Use xtomd.com as a preprocessing step.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
   <link rel="stylesheet" href="../style.css">
   <style>
-    .blog-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 0;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .blog-nav-logo {
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .blog-nav-links {
-      display: flex;
-      gap: 1.25rem;
-    }
-    .blog-nav-links a {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .blog-nav-links a:hover {
-      color: var(--text);
-    }
-    .blog-article h1 {
-      font-size: 1.85rem;
-      text-align: left;
-      margin-bottom: 0.75rem;
-      line-height: 1.25;
-    }
-    .blog-meta {
-      font-size: 0.825rem;
-      color: var(--text-tertiary);
-      margin-bottom: 2rem;
-    }
-    .blog-article h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-top: 2.25rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-    }
-    .blog-article h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .blog-article p {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text);
-    }
-    .blog-article ul, .blog-article ol {
-      margin-bottom: 1rem;
-      padding-left: 1.5rem;
-    }
-    .blog-article li {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      margin-bottom: 0.35rem;
-      color: var(--text);
-    }
-    .blog-article code {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.15rem 0.4rem;
-    }
-    .blog-article pre {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1rem;
-      overflow-x: auto;
-      margin-bottom: 1rem;
-    }
-    .blog-article pre code {
-      border: none;
-      padding: 0;
-      background: none;
-    }
-    .blog-article strong {
-      font-weight: 700;
-    }
-    .blog-article a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-color: var(--accent-soft);
-      text-underline-offset: 2px;
-      transition: text-decoration-color 0.15s;
-    }
-    .blog-article a:hover {
-      text-decoration-color: var(--accent);
-    }
-    .blog-cta {
-      margin-top: 2.5rem;
-      padding: 1.75rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      text-align: center;
-      box-shadow: var(--shadow-md);
-    }
-    .blog-cta h3 {
-      margin-top: 0;
-      font-size: 1.15rem;
-    }
-    .blog-cta p {
-      color: var(--text-secondary);
-      margin-bottom: 1.25rem;
-    }
-    .blog-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      font-family: var(--sans);
-      background: var(--primary);
-      color: var(--bg);
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .blog-cta-btn:hover {
-      background: var(--primary-hover);
-      color: var(--bg);
-      text-decoration: none;
-    }
-    .faq-section {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .faq-section h2 {
-      margin-top: 0;
-    }
-    .faq-item {
-      margin-bottom: 1.25rem;
-    }
-    .faq-item h3 {
-      font-size: 0.95rem;
-      margin-top: 0;
-      margin-bottom: 0.35rem;
-    }
-    .faq-item p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 0;
-    }
-    .blog-footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-tertiary);
-      font-size: 0.8rem;
-      padding-bottom: 1rem;
-    }
-    .blog-related {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .blog-related h2 {
-      margin-top: 0;
-    }
-    .blog-related ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .blog-related li {
-      margin-bottom: 0.5rem;
-    }
-    @media (max-width: 600px) {
-      .blog-article h1 { font-size: 1.4rem; }
-      .blog-article h2 { font-size: 1.1rem; }
-    }
+    .blog-nav { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .blog-nav-logo { font-weight: 800; font-size: 1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .blog-nav-links { display: flex; gap: 1.25rem; }
+    .blog-nav-links a { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .blog-nav-links a:hover { color: var(--text); }
+    .blog-article h1 { font-size: 1.85rem; text-align: left; margin-bottom: 0.75rem; line-height: 1.25; }
+    .blog-meta { font-size: 0.825rem; color: var(--text-tertiary); margin-bottom: 2rem; }
+    .blog-article h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 2.25rem; margin-bottom: 0.75rem; line-height: 1.3; }
+    .blog-article h3 { font-size: 1.05rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .blog-article p { margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.75; color: var(--text); }
+    .blog-article ul, .blog-article ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+    .blog-article li { font-size: 0.95rem; line-height: 1.75; margin-bottom: 0.35rem; color: var(--text); }
+    .blog-article code { font-family: var(--mono); font-size: 0.85rem; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 4px; padding: 0.15rem 0.4rem; }
+    .blog-article strong { font-weight: 700; }
+    .blog-article a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 2px; transition: text-decoration-color 0.15s; }
+    .blog-article a:hover { text-decoration-color: var(--accent); }
+    .blog-cta { margin-top: 2.5rem; padding: 1.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-md); }
+    .blog-cta h3 { margin-top: 0; font-size: 1.15rem; }
+    .blog-cta p { color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .blog-cta-btn { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.75rem 1.5rem; font-size: 0.95rem; font-weight: 600; font-family: var(--sans); background: var(--primary); color: var(--bg); border: none; border-radius: var(--radius-sm); cursor: pointer; text-decoration: none; transition: background 0.15s, transform 0.1s; }
+    .blog-cta-btn:hover { background: var(--primary-hover); color: var(--bg); text-decoration: none; }
+    .faq-section { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .faq-section h2 { margin-top: 0; }
+    .faq-item { margin-bottom: 1.25rem; }
+    .faq-item h3 { font-size: 0.95rem; margin-top: 0; margin-bottom: 0.35rem; }
+    .faq-item p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; }
+    .blog-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-tertiary); font-size: 0.8rem; padding-bottom: 1rem; }
+    @media (max-width: 600px) { .blog-article h1 { font-size: 1.4rem; } .blog-article h2 { font-size: 1.1rem; } }
   </style>
   <script type="application/ld+json">
   {
@@ -216,22 +53,24 @@
     "@type": "Article",
     "headline": "How AI Agents Can Use X Content with xtomd.com",
     "description": "AI agents like CrewAI, AutoGPT, and OpenClaw can't scrape X directly. Use xtomd.com as a preprocessing step to convert X content to agent-readable Markdown.",
-    "author": {
-      "@type": "Organization",
-      "name": "xtomd.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "xtomd.com",
-      "url": "https://xtomd.com"
-    },
+    "author": {"@type": "Organization", "name": "xtomd.com"},
+    "publisher": {"@type": "Organization", "name": "xtomd.com", "url": "https://xtomd.com"},
     "datePublished": "2026-03-16",
     "dateModified": "2026-03-16",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://xtomd.com/blog/ai-agent-workflows-x-content.html"
-    },
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://xtomd.com/blog/ai-agent-workflows-x-content.html"},
     "url": "https://xtomd.com/blog/ai-agent-workflows-x-content.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Can I use xtomd.com without an API key?", "acceptedAnswer": {"@type": "Answer", "text": "xtomd.com offers rate-limited free access. For production workflows, register for an API key. This increases your quota and adds priority processing."}},
+      {"@type": "Question", "name": "What if an X URL is protected or deleted?", "acceptedAnswer": {"@type": "Answer", "text": "xtomd.com returns a 404 response. Your agent should handle this gracefully — either log the error or skip the URL and move on."}},
+      {"@type": "Question", "name": "Does xtomd.com store X content?", "acceptedAnswer": {"@type": "Answer", "text": "No. xtomd.com fetches and converts on-demand. Content is not cached or stored long-term. Each request is independent."}},
+      {"@type": "Question", "name": "How fast is the API response?", "acceptedAnswer": {"@type": "Answer", "text": "Most X URLs process in 1-3 seconds. Complex threads with many replies take longer. Plan for 5-second timeouts in your agent configuration."}}
+    ]
   }
   </script>
 </head>
@@ -241,19 +80,19 @@
       <a href="https://xtomd.com" class="blog-nav-logo">xtomd.com</a>
       <div class="blog-nav-links">
         <a href="https://xtomd.com">Home</a>
-        <a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">Blog</a>
+        <a href="https://xtomd.com/blog/">Blog</a>
       </div>
     </nav>
 
     <article class="blog-article">
       <h1>How AI Agents Can Use X Content with xtomd.com</h1>
-      <p class="blog-meta">Updated March 2026 &middot; 9 min read</p>
+      <p class="blog-meta">Updated March 2026 &middot; 7 min read</p>
 
       <p>AI agents are getting good at web research. They navigate sites, extract data, reason about what they find. But they all hit the same wall: X. The platform blocks automated fetches, serves JavaScript-only pages, and breaks tools that worked fine on every other website.</p>
 
       <p>You want your CrewAI researcher to monitor competitors on X. Your AutoGPT workflow needs to analyze trending threads. Your OpenClaw skill should track brand mentions. None of these work out of the box.</p>
 
-      <p>This post shows you how to integrate <a href="https://xtomd.com">xtomd.com</a> into your AI agent stack — and why it matters.</p>
+      <p>This post shows you how to integrate xtomd.com into your AI agent stack — and why it matters.</p>
 
       <h2>Why do AI agents struggle with X URLs?</h2>
 
@@ -270,9 +109,11 @@
 
       <p>Every AI agent framework assumes web content is readable. Crawl a news site, parse the HTML, extract the text. But X breaks that assumption. Your agent gets empty responses, timeouts, or 403 errors.</p>
 
+      <p>The result? Your workflows fail silently or fallback to incomplete data.</p>
+
       <h2>How xtomd.com solves the X problem</h2>
 
-      <p>xtomd.com is built for this. The API endpoint (<code>POST /api/fetch</code>) accepts an X URL and returns structured JSON with the content already parsed, formatted, and ready for your agent to use.</p>
+      <p>xtomd.com is built for this. The API endpoint (POST <code>/api/fetch</code>) accepts an X URL and returns structured JSON with the content already parsed, formatted, and ready for your agent to use.</p>
 
       <p>Here's the flow:</p>
 
@@ -285,6 +126,24 @@
 
       <p>No rate limiting. No user agent blocking. No JavaScript rendering delays.</p>
 
+      <p>The API returns JSON like this:</p>
+
+      <pre><code>{
+  "url": "https://x.com/user/status/12345",
+  "title": "Thread Title",
+  "content": "# Thread Title\n\n...",
+  "markdown": "markdown formatted content",
+  "author": "@username",
+  "created_at": "2026-03-15T10:00:00Z",
+  "engagement": {
+    "likes": 5234,
+    "replies": 128,
+    "reposts": 89
+  }
+}</code></pre>
+
+      <p>Your agent can now parse this structured data. Feed it into your workflow. Use it for research, analysis, or decision-making.</p>
+
       <h2>Integrating xtomd.com with CrewAI</h2>
 
       <p>CrewAI agents work by assigning tasks to specialized crew members. A researcher agent handles web research. A content curator finds relevant material.</p>
@@ -293,8 +152,9 @@
 
       <pre><code>from crewai import Tool
 import requests
+import json
 
-def fetch_x_content(url: str) -&gt; str:
+def fetch_x_content(url: str) -> str:
     """Fetch X content via xtomd.com API"""
     response = requests.post(
         "https://xtomd.com/api/fetch",
@@ -309,9 +169,21 @@ x_fetch_tool = Tool(
     name="fetch_x_content",
     func=fetch_x_content,
     description="Fetch and convert X URLs to readable Markdown"
+)
+
+researcher = Agent(
+    role="Research Analyst",
+    goal="Analyze competitor activity on X",
+    tools=[x_fetch_tool, web_search_tool]
 )</code></pre>
 
-      <p>Now your CrewAI agent can call this tool directly in a task to research competitor threads or analyze X content.</p>
+      <p>Now your CrewAI agent can call this tool directly in a task:</p>
+
+      <pre><code>task = Task(
+    description="Research competitor threads from @competitor_account",
+    agent=researcher,
+    expected_output="Markdown summary of competitor strategy from X"
+)</code></pre>
 
       <h2>Integrating xtomd.com with AutoGPT</h2>
 
@@ -352,6 +224,13 @@ x_fetch_tool = Tool(
             )
             return response.json()["markdown"]</code></pre>
 
+      <p>Register this skill in your OpenClaw agent configuration:</p>
+
+      <pre><code>skills:
+  - name: x_content
+    handler: XContentSkill
+    priority: high</code></pre>
+
       <h2>Using xtomd.com output with Claude Code</h2>
 
       <p>Claude Code can pipe xtomd.com output directly into context. This is useful for one-off analysis without building a full workflow.</p>
@@ -376,7 +255,7 @@ x_fetch_tool = Tool(
       <p><strong>Brand mentions</strong> — Monitor brand mentions on X. Your agent fetches threads, assesses sentiment, and alerts you to critical customer feedback or PR issues.</p>
 
       <div class="faq-section">
-        <h2>FAQ</h2>
+        <h2>Frequently Asked Questions</h2>
 
         <div class="faq-item">
           <h3>Can I use xtomd.com without an API key?</h3>
@@ -400,19 +279,9 @@ x_fetch_tool = Tool(
       </div>
 
       <div class="blog-cta">
-        <h3>Add X Content to Your AI Agent Workflow</h3>
-        <p>Start with a simple API call and unlock X content for your CrewAI, AutoGPT, or OpenClaw agents.</p>
+        <h3>Get Started with X Content in Your Workflows</h3>
+        <p>X is full of valuable data. Your AI agents should have access to it.</p>
         <a href="https://xtomd.com" class="blog-cta-btn">Open xtomd.com</a>
-      </div>
-
-      <div class="blog-related">
-        <h2>Related Articles</h2>
-        <ul>
-          <li><a href="https://xtomd.com/blog/how-to-convert-x-articles-to-markdown.html">How to Convert X Articles to Markdown</a></li>
-          <li><a href="https://xtomd.com/blog/openclaw-x-articles-markdown.html">How to Use OpenClaw with X Articles</a></li>
-          <li><a href="https://xtomd.com/blog/ai-research-pipeline-x-content.html">Building an AI Research Pipeline with X Content</a></li>
-          <li><a href="https://xtomd.com/blog/feed-x-articles-to-claude.html">Feed X Articles to Claude: Step-by-Step Guide</a></li>
-        </ul>
       </div>
     </article>
 
