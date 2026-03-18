@@ -1,0 +1,66 @@
+# =============================================================
+# Cloudflare Pages Custom Headers
+# Fixes: 3.6% cache rate → should reach 80%+ for static assets
+# =============================================================
+
+# Static assets — cache aggressively (1 year, immutable-style)
+/style.css
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+  X-Content-Type-Options: nosniff
+
+/app.js
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+  X-Content-Type-Options: nosniff
+
+/*.png
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+
+/*.ico
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+
+/*.svg
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+
+/*.webp
+  Cache-Control: public, max-age=31536000, s-maxage=31536000
+
+# HTML pages — cache short, revalidate (SEO-friendly)
+/
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/*.html
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/blog/*
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# SEO/AI discovery files — moderate cache
+/sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/robots.txt
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/llms.txt
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/llms-full.txt
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/.well-known/*
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Access-Control-Allow-Origin: *
+
+# API routes — no browser cache (server-side caching is handled in Workers)
+/api/*
+  Cache-Control: no-store
+  X-Content-Type-Options: nosniff

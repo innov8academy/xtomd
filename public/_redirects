@@ -1,0 +1,19 @@
+# =============================================================
+# Cloudflare Pages Redirects
+# Fixes: common wrong URLs that generate 404s
+# =============================================================
+
+# Common wrong paths people/bots try
+/api                /                302
+/blog               /blog/           301
+/convert            /                302
+/app                /                302
+/login              /                302
+/register           /                302
+/signup             /                302
+/admin              /                302
+/wp-admin           /                302
+/wp-login.php       /                302
+
+# Trailing slash normalization for blog posts
+/blog/index.html    /blog/           301

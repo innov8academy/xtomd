@@ -44,6 +44,15 @@ export async function onRequestOptions() {
 
 // Handle MCP POST requests (JSON-RPC)
 export async function onRequestPost(context) {
+  const ua = context.request.headers.get("User-Agent") || "unknown";
+  const cf = context.request.cf || {};
+  console.log(JSON.stringify({
+    t: new Date().toISOString(),
+    ep: "mcp",
+    ua: ua.slice(0, 80),
+    country: cf.country || "unknown",
+  }));
+
   try {
     const body = await context.request.json();
 

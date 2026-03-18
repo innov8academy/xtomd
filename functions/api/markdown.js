@@ -12,12 +12,31 @@ export async function onRequestOptions() {
   return new Response(null, { headers: CORS_HEADERS });
 }
 
+export async function onRequestGet() {
+  return new Response(
+    JSON.stringify({
+      name: "xtomd /api/markdown",
+      method: "POST",
+      description: "Convert an X (Twitter) URL to Markdown",
+      usage: { url: "https://x.com/user/status/123" },
+      docs: "https://xtomd.com/.well-known/openapi.json",
+    }),
+    {
+      headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+    }
+  );
+}
+
 export async function onRequestPost(context) {
+  const startTime = Date.now();
+  const reqInfo = getRequestInfo(context.request);
+
   try {
     const body = await context.request.json();
     const url = body.url;
 
     if (!url) {
+      logRequest(reqInfo, "markdown", null, "error", "missing_url", startTime);
       return new Response(JSON.stringify({ error: "Missing 'url' in request body" }), {
         status: 400,
         headers: { "Content-Type": "application/json", ...CORS_HEADERS },
@@ -34,6 +53,7 @@ export async function onRequestPost(context) {
 
     if (!fetchResp.ok) {
       const err = await fetchResp.json();
+      logRequest(reqInfo, "markdown", url, "error", `upstream_${fetchResp.status}`, startTime);
       return new Response(JSON.stringify(err), {
         status: fetchResp.status,
         headers: { "Content-Type": "application/json", ...CORS_HEADERS },
@@ -42,6 +62,8 @@ export async function onRequestPost(context) {
 
     const data = await fetchResp.json();
     const markdown = convertToMarkdown(data);
+
+    logRequest(reqInfo, "markdown", url, "success", data.article ? "article" : "tweet", startTime);
 
     // Return based on Accept header
     const accept = context.request.headers.get("Accept") || "";
@@ -56,11 +78,56 @@ export async function onRequestPost(context) {
       headers: { "Content-Type": "application/json", ...CORS_HEADERS },
     });
   } catch (err) {
+    logRequest(reqInfo, "markdown", null, "error", err.message, startTime);
     return new Response(JSON.stringify({ error: "Internal server error: " + err.message }), {
       status: 500,
       headers: { "Content-Type": "application/json", ...CORS_HEADERS },
     });
   }
+}
+
+// ---------------------------------------------------------------------------
+// Request Logging — visible via `wrangler pages deployment tail`
+// ---------------------------------------------------------------------------
+
+function getRequestInfo(request) {
+  const ua = request.headers.get("User-Agent") || "unknown";
+  const referer = request.headers.get("Referer") || "none";
+  const cf = request.cf || {};
+  return {
+    country: cf.country || "unknown",
+    userAgent: ua.slice(0, 120),
+    referer,
+    source: classifySource(ua, referer),
+  };
+}
+
+function classifySource(ua, referer) {
+  const ual = ua.toLowerCase();
+  if (ual.includes("smithery") || ual.includes("mcp")) return "mcp-client";
+  if (ual.includes("claude") || ual.includes("anthropic")) return "claude";
+  if (ual.includes("openai") || ual.includes("chatgpt")) return "openai";
+  if (ual.includes("crewai")) return "crewai";
+  if (ual.includes("langchain")) return "langchain";
+  if (ual.includes("bot") || ual.includes("crawler") || ual.includes("spider")) return "bot";
+  if (referer && referer.includes("xtomd.com")) return "website";
+  if (ual.includes("curl") || ual.includes("httpie") || ual.includes("python-requests")) return "script";
+  return "unknown";
+}
+
+function logRequest(info, endpoint, url, status, detail, startTime) {
+  const duration = Date.now() - startTime;
+  console.log(JSON.stringify({
+    t: new Date().toISOString(),
+    ep: endpoint,
+    src: info.source,
+    status,
+    detail,
+    url: url ? url.slice(0, 100) : null,
+    country: info.country,
+    ua: info.userAgent.slice(0, 60),
+    ms: duration,
+  }));
 }
 
 // ---------------------------------------------------------------------------

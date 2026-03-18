@@ -13,17 +13,37 @@ export async function onRequestOptions() {
   return new Response(null, { headers: CORS_HEADERS });
 }
 
+export async function onRequestGet() {
+  return new Response(
+    JSON.stringify({
+      name: "xtomd /api/fetch",
+      method: "POST",
+      description: "Fetch raw JSON data from an X (Twitter) URL",
+      usage: { url: "https://x.com/user/status/123" },
+      docs: "https://xtomd.com/.well-known/openapi.json",
+    }),
+    {
+      headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+    }
+  );
+}
+
 export async function onRequestPost(context) {
+  const startTime = Date.now();
+  const reqInfo = getRequestInfo(context.request);
+
   try {
     const body = await context.request.json();
     const url = body.url;
 
     if (!url) {
+      logRequest(reqInfo, "fetch", null, "error", "missing_url", startTime);
       return jsonError("Missing 'url' in request body", 400);
     }
 
     const parsed = parseXUrl(url);
     if (!parsed) {
+      logRequest(reqInfo, "fetch", url, "error", "invalid_url", startTime);
       return jsonError("Invalid X/Twitter URL. Provide a link like https://x.com/user/status/123", 400);
     }
 
@@ -33,6 +53,7 @@ export async function onRequestPost(context) {
     const cached = await cache.match(cacheKey);
     if (cached) {
       const cachedData = await cached.json();
+      logRequest(reqInfo, "fetch", url, "success", "cache_hit", startTime);
       return jsonResponse({ ...cachedData, cached: true });
     }
 
@@ -40,6 +61,7 @@ export async function onRequestPost(context) {
     const result = await fetchFromFxTwitter(parsed);
 
     if (!result) {
+      logRequest(reqInfo, "fetch", url, "error", "upstream_failed", startTime);
       return jsonError("Could not fetch content from X. The post may be private, deleted, or require authentication.", 502);
     }
 
@@ -49,8 +71,10 @@ export async function onRequestPost(context) {
     });
     context.waitUntil(cache.put(cacheKey, cacheResponse));
 
+    logRequest(reqInfo, "fetch", url, "success", result.article ? "article" : "tweet", startTime);
     return jsonResponse(result);
   } catch (err) {
+    logRequest(reqInfo, "fetch", null, "error", err.message, startTime);
     console.error("Worker error:", err);
     return jsonError("Internal server error: " + err.message, 500);
   }
@@ -180,4 +204,54 @@ function jsonError(message, status) {
     status,
     headers: { "Content-Type": "application/json", ...CORS_HEADERS },
   });
+}
+
+// ---------------------------------------------------------------------------
+// Request Logging — visible via `wrangler pages deployment tail`
+// ---------------------------------------------------------------------------
+
+function getRequestInfo(request) {
+  const ua = request.headers.get("User-Agent") || "unknown";
+  const referer = request.headers.get("Referer") || "none";
+  const cf = request.cf || {};
+  return {
+    country: cf.country || "unknown",
+    city: cf.city || "unknown",
+    userAgent: ua.slice(0, 120),
+    referer,
+    source: classifySource(ua, referer),
+  };
+}
+
+function classifySource(ua, referer) {
+  const ual = ua.toLowerCase();
+  // MCP / Smithery clients
+  if (ual.includes("smithery") || ual.includes("mcp")) return "mcp-client";
+  // Known AI agents
+  if (ual.includes("claude") || ual.includes("anthropic")) return "claude";
+  if (ual.includes("openai") || ual.includes("chatgpt")) return "openai";
+  if (ual.includes("crewai")) return "crewai";
+  if (ual.includes("langchain")) return "langchain";
+  // Bot/crawler
+  if (ual.includes("bot") || ual.includes("crawler") || ual.includes("spider")) return "bot";
+  // Browser (from the website)
+  if (referer && referer.includes("xtomd.com")) return "website";
+  // curl / httpie / scripts
+  if (ual.includes("curl") || ual.includes("httpie") || ual.includes("python-requests")) return "script";
+  return "unknown";
+}
+
+function logRequest(info, endpoint, url, status, detail, startTime) {
+  const duration = Date.now() - startTime;
+  console.log(JSON.stringify({
+    t: new Date().toISOString(),
+    ep: endpoint,
+    src: info.source,
+    status,
+    detail,
+    url: url ? url.slice(0, 100) : null,
+    country: info.country,
+    ua: info.userAgent.slice(0, 60),
+    ms: duration,
+  }));
 }

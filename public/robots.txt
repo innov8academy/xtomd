@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /mcp
+Disallow: /cdn-cgi/
 
 Sitemap: https://xtomd.com/sitemap.xml
 
