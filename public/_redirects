@@ -3,6 +3,9 @@
 # Fixes: common wrong URLs that generate 404s
 # =============================================================
 
+# Favicon — serve PNG at /favicon.ico for Google Search results
+/favicon.ico    /favicon-32x32.png    200
+
 # Common wrong paths people/bots try
 /api                /                302
 /blog               /blog/           301
